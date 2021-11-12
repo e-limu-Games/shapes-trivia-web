@@ -1,0 +1,36 @@
+#levelButton, #menuButton{
+	position: relative;
+	text-align: center;
+	cursor: pointer;
+	outline: none;
+	border: none;
+	border-radius: 15px;
+	box-shadow: 0 9px #999;
+}
+
+#levelButton {
+	font-size: 150%;
+	font-family: TitilliumWeb-Bold;
+	color: #fff;
+	background-color: #04AA6D;
+}
+
+#menuButton {
+	font-size: 200%;
+	font-family: TitilliumWeb-Bold;
+	color: #fff;
+	background-color: #eccc34;
+}
+
+#levelButton:hover,#levelButton:active,
+#menuButton:hover,#menuButton:active
+{
+	filter: brightness(90%);
+}
+
+#levelButton:active, 
+#menuButton:active
+{
+	box-shadow: 0 5px #666;
+	transform: translateY(4px);
+}
