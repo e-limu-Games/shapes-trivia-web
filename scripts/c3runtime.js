@@ -6016,8 +6016,8 @@ MovingAngle(){return C3.toDegrees(this._a)},CurrentNode(){return this._moveNode}
 		C3.Plugins.Sprite.Cnds.IsOverlapping,
 		C3.Plugins.Sprite.Cnds.IsOutsideLayout,
 		C3.Plugins.Sprite.Cnds.OnCollision,
-		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Acts.SimpleReadData,
 		C3.Plugins.Sparsha_FirebaseSDK.Acts.LoadSD,
+		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Acts.SimpleReadData,
 		C3.Plugins.Touch.Cnds.OnTouchStart,
 		C3.Plugins.Touch.Cnds.OnTouchEnd,
 		C3.Plugins.Sparsha_FirebaseSDK.Cnds.Isloadedfb,
@@ -6045,62 +6045,26 @@ MovingAngle(){return C3.toDegrees(this._a)},CurrentNode(){return this._moveNode}
 		C3.Plugins.Sparsha_FirebaseAuth.Exps.errorMessage,
 		C3.Plugins.Sparsha_FirebaseAuth.Exps.errorActionCode,
 		C3.Plugins.Sparsha_FirebaseAuth.Exps.errorCode,
-		C3.Plugins.Sparsha_FirebaseAuth.Acts.ResetPassword,
-		C3.Plugins.Sparsha_FirebaseAuth.Cnds.OnAuthEmailLinkSent,
-		C3.Plugins.Text.Acts.SetText,
-		C3.Behaviors.Sin.Acts.SetEnabled,
-		C3.Plugins.Sprite.Acts.SetInstanceVar,
-		C3.Plugins.Sprite.Acts.SetBoolInstanceVar,
-		C3.Plugins.Sprite.Cnds.IsBoolInstanceVarSet,
-		C3.Plugins.Sprite.Acts.SetX,
-		C3.Plugins.Sprite.Acts.AddInstanceVar,
-		C3.Plugins.Sprite.Acts.SetY,
-		C3.Plugins.Sprite.Cnds.CompareInstanceVar,
-		C3.Plugins.Sprite.Acts.MoveToTop,
-		C3.Plugins.Sprite.Cnds.IsOnScreen,
-		C3.Plugins.Sprite.Cnds.CompareX,
-		C3.Plugins.Browser.Acts.GoToURLWindow,
-		C3.Plugins.Sprite.Acts.SetPos,
-		C3.Plugins.Sprite.Acts.SetHeight,
-		C3.Plugins.Sprite.Exps.Height,
-		C3.Plugins.Sprite.Acts.SetWidth,
-		C3.Plugins.Sprite.Exps.Width,
-		C3.Plugins.Touch.Exps.X,
-		C3.Plugins.Touch.Exps.Y,
-		C3.Plugins.System.Acts.CreateObject,
-		C3.Plugins.Text.Cnds.IsVisible,
-		C3.Behaviors.lunarray_LiteTween.Acts.Start,
-		C3.Plugins.Particles.Acts.SetOpacity,
-		C3.Plugins.Touch.Cnds.OnTapGestureObject,
-		C3.Behaviors.Physics.Acts.SetWorldGravity,
-		C3.Behaviors.Physics.Acts.SetImmovable,
-		C3.Behaviors.Physics.Acts.ApplyForce,
-		C3.Plugins.Browser.Acts.ExecJs,
-		C3.Plugins.Keyboard.Cnds.OnKeyReleased,
-		C3.Behaviors.lunarray_LiteTween.Cnds.OnEnd,
-		C3.Behaviors.lunarray_LiteTween.Acts.Reverse,
-		C3.Plugins.Particles.Acts.SetSpraying,
-		C3.Behaviors.Physics.Acts.EnableCollisions,
-		C3.Plugins.Browser.Acts.GoToURL,
-		C3.Behaviors.lunarray_LiteTween.Cnds.OnReverseEnd,
 		C3.ScriptsInEvents.Gameplay_Event1_Act3,
-		C3.Plugins.Browser.Acts.LoadStyleSheet,
-		C3.Plugins.Browser.Acts.LockOrientation,
 		C3.Plugins.Browser.Acts.RequestFullScreen,
+		C3.Plugins.Browser.Acts.LockOrientation,
+		C3.Plugins.Browser.Acts.LoadStyleSheet,
+		C3.Plugins.Text.Acts.SetText,
 		C3.Plugins.System.Cnds.IsGroupActive,
+		C3.Plugins.Sprite.Acts.SetPos,
 		C3.Plugins.Text.Acts.SetFontColor,
-		C3.Plugins.Text.Acts.SetY,
-		C3.Plugins.Text.Exps.Y,
 		C3.Plugins.Text.Acts.SetWidth,
-		C3.Plugins.Text.Exps.X,
 		C3.Plugins.Text.Acts.Destroy,
+		C3.Plugins.Touch.Cnds.OnTapGestureObject,
 		C3.ScriptsInEvents.Shapeidentity_Event2_Act1,
 		C3.ScriptsInEvents.Shapeidentity_Event2_Act7,
 		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Acts.AdvancedReadData,
 		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Cnds.OnAdvRead,
 		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Exps.customData,
+		C3.Plugins.Sprite.Cnds.CompareX,
 		C3.Plugins.System.Exps.int,
-		C3.ScriptsInEvents.Taskmenu_Event1_Act5,
+		C3.Plugins.Browser.Acts.GoToURLWindow,
+		C3.ScriptsInEvents.Taskmenu_Event1_Act3,
 		C3.Plugins.sliderbar.Acts.SetValue,
 		C3.Plugins.Audio.Cnds.IsTagPlaying,
 		C3.Plugins.Audio.Acts.SetVolume,
@@ -6505,6 +6469,7 @@ MovingAngle(){return C3.toDegrees(this._a)},CurrentNode(){return this._moveNode}
 		{VolumeSliderBar: 0},
 		{ShapeIdentityScoreText: 0},
 		{ShapeIdentityCoinsText: 0},
+		{logo: 0},
 		{doneloading: 0},
 		{BestScore: 0},
 		{badges: 0},
@@ -6533,37 +6498,6 @@ MovingAngle(){return C3.toDegrees(this._a)},CurrentNode(){return this._moveNode}
 		{isEmailLogin: 0},
 		{Userspeed: 0},
 		{countTip1: 0},
-		{x1: 0},
-		{Y1: 0},
-		{X2: 0},
-		{Y2: 0},
-		{Click_Count: 0},
-		{checkBlacks: 0},
-		{temp: 0},
-		{checkyellow: 0},
-		{checkred: 0},
-		{checkblue: 0},
-		{clicked: 0},
-		{Match_Score: 0},
-		{FindCircle: 0},
-		{FindTriangle: 0},
-		{FindSquare: 0},
-		{FindRectangle: 0},
-		{won: 0},
-		{countclick: 0},
-		{CoinTargetTOMB: 0},
-		{MoveUpDownTOMB: 0},
-		{MoveSideTOMB: 0},
-		{StartYTOMB: 0},
-		{StartXTOMB: 0},
-		{YEndPointTOMB: 0},
-		{YStartPointTOMB: 0},
-		{XEndPointTOMB: 0},
-		{XStartPointTOMB: 0},
-		{YspeedTOMB: 0},
-		{XspeedTOMB: 0},
-		{CoinTOMB: 0},
-		{MonsterSpeedTOMB: 0},
 		{CurrentYear: 0},
 		{SelectedLevel: 0},
 		{ShapeIndexes: 0},
@@ -6875,129 +6809,8 @@ MovingAngle(){return C3.toDegrees(this._a)},CurrentNode(){return this._moveNode}
 		() => 57,
 		() => 58,
 		() => 59,
-		() => 512,
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => (500 + f0(500));
-		},
-		() => "blue",
-		p => {
-			const n0 = p._GetNode(0);
-			return () => n0.ExpInstVar();
-		},
-		() => "black",
-		() => "yellow",
-		() => "red",
-		p => {
-			const n0 = p._GetNode(0);
-			const n1 = p._GetNode(1);
-			return () => Math.abs((n0.ExpObject() - n1.ExpObject()));
-		},
-		() => 400,
-		p => {
-			const n0 = p._GetNode(0);
-			return () => (n0.ExpObject() + 12);
-		},
-		p => {
-			const n0 = p._GetNode(0);
-			return () => (n0.ExpObject() - 12);
-		},
-		() => "d",
-		() => "c",
-		() => 159,
-		() => 734,
-		() => "b",
-		() => 331,
-		() => 72,
-		() => "a",
-		() => 600,
-		() => 1300,
-		() => 620,
-		() => "https://mathdesk.e-limu.org/",
-		() => "Maths Ninja",
-		() => "shape",
-		() => 319,
-		() => 98,
-		() => 176,
-		() => 105,
-		() => 144,
-		() => 151,
-		() => 84,
-		() => "answer",
-		() => 1.2,
-		() => 825,
-		() => 225,
-		() => -1000,
-		() => 1000,
-		() => 0.9,
-		() => 120,
-		() => 240,
-		() => "move",
-		() => "back",
-		() => 445,
-		() => 719,
-		() => 930,
-		() => 1500,
-		() => 819,
-		() => 800,
-		p => {
-			const n0 = p._GetNode(0);
-			return () => (n0.ExpObject() - 7);
-		},
-		() => -15,
-		p => {
-			const n0 = p._GetNode(0);
-			const v1 = p._GetNode(1).GetVar();
-			return () => (n0.ExpObject() + v1.GetValue());
-		},
-		p => {
-			const n0 = p._GetNode(0);
-			const v1 = p._GetNode(1).GetVar();
-			return () => (n0.ExpObject() - v1.GetValue());
-		},
-		p => {
-			const v0 = p._GetNode(0).GetVar();
-			const n1 = p._GetNode(1);
-			return () => (v0.GetValue() + (n1.ExpObject() / 2));
-		},
-		p => {
-			const n0 = p._GetNode(0);
-			const n1 = p._GetNode(1);
-			const v2 = p._GetNode(2).GetVar();
-			return () => ((n0.ExpObject() + (n1.ExpObject() / 2)) - v2.GetValue());
-		},
-		p => {
-			const n0 = p._GetNode(0);
-			const n1 = p._GetNode(1);
-			const v2 = p._GetNode(2).GetVar();
-			return () => ((n0.ExpObject() - n1.ExpObject()) - v2.GetValue());
-		},
-		p => {
-			const v0 = p._GetNode(0).GetVar();
-			const v1 = p._GetNode(1).GetVar();
-			return () => Math.abs((v0.GetValue() - v1.GetValue()));
-		},
-		() => -20,
-		p => {
-			const n0 = p._GetNode(0);
-			return () => (n0.ExpObject() - 10);
-		},
-		p => {
-			const n0 = p._GetNode(0);
-			const v1 = p._GetNode(1).GetVar();
-			const n2 = p._GetNode(2);
-			return () => ((n0.ExpObject() - v1.GetValue()) + n2.ExpObject());
-		},
-		() => 65,
-		() => "window.external.notify('SHOWBANNER');",
-		() => "window.external.notify('RATE');",
-		() => -30,
-		() => "https://elimu-c3puzzles.s3.eu-central-1.amazonaws.com/Shapes/index.html",
-		() => 320,
-		() => 1830,
-		() => 820,
-		() => 330,
 		() => "levelbox",
+		() => 600,
 		() => "level1",
 		() => "audio",
 		() => "level2",
@@ -7005,9 +6818,7 @@ MovingAngle(){return C3.toDegrees(this._a)},CurrentNode(){return this._moveNode}
 		() => "level4",
 		() => "level5",
 		() => "level6",
-		() => 750,
-		() => 430,
-		() => "Button.css",
+		() => "customstyle.css",
 		() => "playercoin",
 		() => "playerspeed",
 		() => "playerbestscore",
@@ -7037,50 +6848,23 @@ MovingAngle(){return C3.toDegrees(this._a)},CurrentNode(){return this._moveNode}
 		},
 		() => "Profile",
 		() => "profilePage",
-		() => 659,
 		() => 900,
 		() => "profilePos",
+		() => 400,
+		() => "profile",
+		() => 91,
+		() => 309,
 		() => -1023,
-		() => "Badges Won: ",
-		() => "Speed Per Question:",
-		p => {
-			const n0 = p._GetNode(0);
-			return () => (n0.ExpObject() + 150);
-		},
-		p => {
-			const n0 = p._GetNode(0);
-			return () => (n0.ExpObject() + 200);
-		},
-		p => {
-			const n0 = p._GetNode(0);
-			return () => (n0.ExpObject() - 20);
-		},
-		p => {
-			const v0 = p._GetNode(0).GetVar();
-			return () => and(Math.floor(v0.GetValue()), " Seconds");
-		},
-		() => "Total Coins:",
-		p => {
-			const n0 = p._GetNode(0);
-			return () => (n0.ExpObject() + 250);
-		},
-		() => "Color Themes:",
-		p => {
-			const n0 = p._GetNode(0);
-			return () => (n0.ExpObject() + 450);
-		},
-		() => 455,
-		() => 720,
-		() => 920,
-		() => 1020,
-		() => 1120,
+		() => "Total Coins: 0",
 		() => -717750023016447,
-		() => -250,
 		() => "Background",
 		() => "Avatar",
 		() => "Startup - Shape Identity",
+		() => "shape",
+		() => 319,
 		() => "ShapeIdentityScore",
 		() => "ShapeIdentityCoins",
+		() => 176,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0("ShapeIdentityScore");
@@ -7121,6 +6905,12 @@ MovingAngle(){return C3.toDegrees(this._a)},CurrentNode(){return this._moveNode}
 		() => "Parallelogram - 23",
 		() => "Trapezoid - 24",
 		() => "Shape Answer",
+		() => 1300,
+		() => "answer",
+		() => 1.2,
+		() => 825,
+		() => 225,
+		() => 800,
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			return () => (v0.GetValue() + 1);
@@ -7134,12 +6924,17 @@ MovingAngle(){return C3.toDegrees(this._a)},CurrentNode(){return this._moveNode}
 			const f1 = p._GetNode(1).GetBoundMethod();
 			return () => (f0(f1("ShapeIdentityScore")) + 5);
 		},
+		() => -1000,
+		() => 1000,
 		() => "The End - Shape Identity",
 		() => "box-modal",
 		() => 590,
+		() => 734,
 		() => 435,
 		() => 370,
 		() => "Coins",
+		() => "move",
+		() => "back",
 		() => "Next Question",
 		p => {
 			const v0 = p._GetNode(0).GetVar();
@@ -7150,6 +6945,8 @@ MovingAngle(){return C3.toDegrees(this._a)},CurrentNode(){return this._moveNode}
 			const f1 = p._GetNode(1).GetBoundMethod();
 			return () => (f0(f1("ShapeIdentityCoins")) + 2);
 		},
+		() => "https://mathdesk.e-limu.org/",
+		() => "Maths Ninja",
 		() => "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
 		() => "shapeID",
 		() => 536,
@@ -7192,7 +6989,7 @@ MovingAngle(){return C3.toDegrees(this._a)},CurrentNode(){return this._moveNode}
 			setQuestion(runtime);
 		},
 
-		async Taskmenu_Event1_Act5(runtime, localVars)
+		async Taskmenu_Event1_Act3(runtime, localVars)
 		{
 			shuffleShapes(runtime);
 		}
