@@ -6046,6 +6046,12 @@ MovingAngle(){return C3.toDegrees(this._a)},CurrentNode(){return this._moveNode}
 		C3.Plugins.Sparsha_FirebaseAuth.Exps.errorActionCode,
 		C3.Plugins.Sparsha_FirebaseAuth.Exps.errorCode,
 		C3.ScriptsInEvents.Gameplay_Event1_Act3,
+		C3.ScriptsInEvents.Gameplay_Event8_Act3,
+		C3.ScriptsInEvents.Gameplay_Event9_Act3,
+		C3.ScriptsInEvents.Gameplay_Event10_Act3,
+		C3.ScriptsInEvents.Gameplay_Event11_Act3,
+		C3.ScriptsInEvents.Gameplay_Event12_Act3,
+		C3.ScriptsInEvents.Gameplay_Event13_Act3,
 		C3.Plugins.Browser.Acts.RequestFullScreen,
 		C3.Plugins.Browser.Acts.LockOrientation,
 		C3.Plugins.Browser.Acts.LoadStyleSheet,
@@ -6057,7 +6063,7 @@ MovingAngle(){return C3.toDegrees(this._a)},CurrentNode(){return this._moveNode}
 		C3.Plugins.Text.Acts.Destroy,
 		C3.Plugins.Touch.Cnds.OnTapGestureObject,
 		C3.ScriptsInEvents.Shapeidentity_Event2_Act1,
-		C3.ScriptsInEvents.Shapeidentity_Event2_Act7,
+		C3.ScriptsInEvents.Shapeidentity_Event2_Act8,
 		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Acts.AdvancedReadData,
 		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Cnds.OnAdvRead,
 		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Exps.customData,
@@ -6726,7 +6732,7 @@ MovingAngle(){return C3.toDegrees(this._a)},CurrentNode(){return this._moveNode}
 			return () => f0("photonumber");
 		},
 		() => 793,
-		() => 1030,
+		() => 786,
 		() => "123456",
 		() => 70,
 		() => "photoindex",
@@ -6811,6 +6817,7 @@ MovingAngle(){return C3.toDegrees(this._a)},CurrentNode(){return this._moveNode}
 		() => 59,
 		() => "levelbox",
 		() => 600,
+		() => "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
 		() => "level1",
 		() => "audio",
 		() => "level2",
@@ -6913,10 +6920,6 @@ MovingAngle(){return C3.toDegrees(this._a)},CurrentNode(){return this._moveNode}
 		() => 800,
 		p => {
 			const v0 = p._GetNode(0).GetVar();
-			return () => (v0.GetValue() + 1);
-		},
-		p => {
-			const v0 = p._GetNode(0).GetVar();
 			return () => (v0.GetValue() + 5);
 		},
 		p => {
@@ -6947,7 +6950,6 @@ MovingAngle(){return C3.toDegrees(this._a)},CurrentNode(){return this._moveNode}
 		},
 		() => "https://mathdesk.e-limu.org/",
 		() => "Maths Ninja",
-		() => "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
 		() => "shapeID",
 		() => 536,
 		() => 121,
@@ -6978,13 +6980,43 @@ MovingAngle(){return C3.toDegrees(this._a)},CurrentNode(){return this._moveNode}
 			runtime.globalVars.CurrentYear = new Date().getFullYear();
 		},
 
+		async Gameplay_Event8_Act3(runtime, localVars)
+		{
+			shuffleShapes(runtime);
+		},
+
+		async Gameplay_Event9_Act3(runtime, localVars)
+		{
+			shuffleShapes(runtime);
+		},
+
+		async Gameplay_Event10_Act3(runtime, localVars)
+		{
+			shuffleShapes(runtime);
+		},
+
+		async Gameplay_Event11_Act3(runtime, localVars)
+		{
+			shuffleShapes(runtime);
+		},
+
+		async Gameplay_Event12_Act3(runtime, localVars)
+		{
+			shuffleShapes(runtime);
+		},
+
+		async Gameplay_Event13_Act3(runtime, localVars)
+		{
+			shuffleShapes(runtime);
+		},
+
 		async Shapeidentity_Event2_Act1(runtime, localVars)
 		{
 			//alert(runtime.globalVars.ShapeIndexes)
 			getShape(runtime);
 		},
 
-		async Shapeidentity_Event2_Act7(runtime, localVars)
+		async Shapeidentity_Event2_Act8(runtime, localVars)
 		{
 			setQuestion(runtime);
 		},
