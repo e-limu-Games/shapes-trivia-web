@@ -6750,10 +6750,10 @@ MovingAngle(){return C3.toDegrees(this._a)},CurrentNode(){return this._moveNode}
 			return () => (2021 - n0.ExpObject());
 		},
 		() => 71,
-		() => 150,
 		() => 180,
 		() => 79,
 		() => 55,
+		() => 150,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0("photoindex");
