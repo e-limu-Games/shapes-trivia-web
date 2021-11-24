@@ -5950,55 +5950,29 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		C3.Plugins.sliderbar,
 		C3.Plugins.video,
 		C3.Plugins.System.Cnds.OnLayoutStart,
-		C3.Behaviors.Tween.Acts.TweenTwoProperties,
-		C3.Behaviors.Tween.Acts.TweenOneProperty,
-		C3.Plugins.System.Acts.WaitForPreviousActions,
-		C3.Plugins.Sprite.Acts.SetAnimFrame,
-		C3.Plugins.Audio.Acts.Play,
-		C3.ScriptsInEvents.Menu_Event1_Act11,
-		C3.Behaviors.Tween.Cnds.OnTweensFinished,
-		C3.Plugins.Touch.Cnds.OnTouchObject,
-		C3.Plugins.System.Acts.GoToLayout,
-		C3.Plugins.Sprite.Cnds.CompareOpacity,
-		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Acts.AdvancedWriteData,
-		C3.Plugins.Browser.Exps.ExecJS,
-		C3.Plugins.System.Cnds.CompareBoolVar,
-		C3.Plugins.Sprite.Acts.Destroy,
-		C3.Plugins.System.Acts.SetBoolVar,
-		C3.Plugins.Sprite.Cnds.CompareHeight,
-		C3.Plugins.Sprite.Acts.Spawn,
 		C3.Plugins.Sparsha_FirebaseAuth.Acts.SignOut,
-		C3.Plugins.System.Acts.Wait,
-		C3.Plugins.System.Cnds.EveryTick,
-		C3.Plugins.System.Cnds.CompareVar,
-		C3.Plugins.Sprite.Acts.SetVisible,
+		C3.Plugins.Sprite.Acts.SetAnimFrame,
+		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Acts.SimpleReadData,
+		C3.Plugins.System.Acts.WaitForPreviousActions,
+		C3.Plugins.Touch.Cnds.OnTouchObject,
+		C3.Plugins.Audio.Acts.Play,
+		C3.Behaviors.Tween.Acts.TweenTwoProperties,
+		C3.Behaviors.Tween.Cnds.OnTweensFinished,
+		C3.Plugins.Touch.Cnds.OnTouchStart,
+		C3.Plugins.Touch.Cnds.IsTouchingObject,
+		C3.Plugins.Sprite.Acts.SetSize,
+		C3.Plugins.Touch.Cnds.OnTouchEnd,
+		C3.Plugins.System.Acts.GoToLayout,
+		C3.Plugins.Sparsha_FirebaseSDK.Cnds.Isloadedfb,
+		C3.Plugins.System.Cnds.TriggerOnce,
 		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Cnds.OnSimpleRead,
 		C3.Plugins.System.Acts.SetVar,
 		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Exps.userData,
-		C3.Plugins.System.Cnds.Compare,
-		C3.Plugins.Audio.Acts.StopAll,
-		C3.Plugins.Text.Acts.SetVisible,
-		C3.Plugins.Sprite.Acts.SetPosToObject,
-		C3.Behaviors.Rotate.Exps.Speed,
-		C3.Behaviors.Rotate.Acts.SetSpeed,
-		C3.Plugins.System.Acts.AddVar,
-		C3.Behaviors.Rotate.Acts.SetAcceleration,
-		C3.Plugins.Touch.Cnds.IsTouchingObject,
-		C3.Plugins.Sprite.Acts.SetSize,
-		C3.Plugins.System.Exps.random,
-		C3.Plugins.Sprite.Exps.X,
-		C3.Plugins.Sprite.Exps.Y,
-		C3.Plugins.System.Cnds.Every,
-		C3.Plugins.Sprite.Cnds.IsOverlapping,
-		C3.Plugins.Sprite.Cnds.IsOutsideLayout,
-		C3.Plugins.Sprite.Cnds.OnCollision,
 		C3.Plugins.Sparsha_FirebaseSDK.Acts.LoadSD,
-		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Acts.SimpleReadData,
-		C3.Plugins.Touch.Cnds.OnTouchStart,
-		C3.Plugins.Touch.Cnds.OnTouchEnd,
-		C3.Plugins.Sparsha_FirebaseSDK.Cnds.Isloadedfb,
-		C3.Plugins.System.Cnds.TriggerOnce,
+		C3.Plugins.System.Acts.SetBoolVar,
+		C3.Plugins.Sprite.Acts.SetVisible,
 		C3.Plugins.TextBox.Acts.SetVisible,
+		C3.Plugins.Text.Acts.SetVisible,
 		C3.Plugins.List.Acts.SetVisible,
 		C3.Plugins.TextBox.Cnds.CompareText,
 		C3.Plugins.Sparsha_FirebaseAuth.Acts.Signupemail,
@@ -6012,11 +5986,16 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		C3.Plugins.List.Exps.SelectedIndex,
 		C3.Plugins.Sparsha_FirebaseAuth.Cnds.IsEmailVerified,
 		C3.Plugins.Sparsha_FirebaseAuth.Acts.VerifyEmail,
+		C3.Plugins.System.Cnds.CompareBoolVar,
 		C3.Plugins.Sparsha_FirebaseAuth.Cnds.ErrorOccured,
+		C3.Plugins.System.Cnds.CompareVar,
+		C3.Behaviors.Tween.Acts.TweenOneProperty,
+		C3.Plugins.System.Acts.AddVar,
 		C3.Plugins.System.Acts.SubVar,
 		C3.Plugins.System.Cnds.Else,
 		C3.Plugins.Sprite.Cnds.IsVisible,
 		C3.Plugins.Sparsha_FirebaseAuth.Acts.Signinemail,
+		C3.Plugins.System.Cnds.EveryTick,
 		C3.Plugins.Browser.Acts.ConsoleLog,
 		C3.Plugins.Sparsha_FirebaseAuth.Exps.errorMessage,
 		C3.Plugins.Sparsha_FirebaseAuth.Exps.errorActionCode,
@@ -6032,19 +6011,23 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		C3.Plugins.Browser.Acts.LockOrientation,
 		C3.Plugins.Browser.Acts.LoadStyleSheet,
 		C3.Plugins.Text.Acts.SetText,
-		C3.Plugins.System.Cnds.IsGroupActive,
 		C3.Plugins.Sprite.Acts.SetPos,
+		C3.Plugins.Sprite.Exps.X,
+		C3.Plugins.Sprite.Exps.Y,
+		C3.Plugins.Text.Acts.SetPos,
+		C3.Plugins.System.Cnds.IsGroupActive,
+		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Cnds.OnSimpleTrigger,
 		C3.Plugins.Text.Acts.SetFontColor,
-		C3.Plugins.Text.Acts.SetWidth,
-		C3.Plugins.Text.Acts.Destroy,
 		C3.Plugins.System.Acts.ResetGlobals,
+		C3.Plugins.Sprite.Cnds.CompareX,
 		C3.ScriptsInEvents.Shapeidentity_Event2_Act1,
 		C3.ScriptsInEvents.Shapeidentity_Event2_Act8,
-		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Cnds.OnSimpleTrigger,
-		C3.Plugins.Sprite.Cnds.CompareX,
+		C3.Plugins.Sprite.Acts.Spawn,
 		C3.Plugins.System.Exps.int,
+		C3.Plugins.System.Acts.Wait,
 		C3.Plugins.Browser.Acts.GoToURLWindow,
 		C3.ScriptsInEvents.Taskmenu_Event1_Act3,
+		C3.Plugins.Sprite.Cnds.IsOverlapping,
 		C3.Plugins.sliderbar.Acts.SetValue,
 		C3.Plugins.Audio.Cnds.IsTagPlaying,
 		C3.Plugins.Audio.Acts.SetVolume,
@@ -6260,7 +6243,6 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		{Sine3: 0},
 		{icon: 0},
 		{play: 0},
-		{coinTxT: 0},
 		{box: 0},
 		{signUp: 0},
 		{signIn: 0},
@@ -6281,14 +6263,13 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		{forgotnickname: 0},
 		{arrow: 0},
 		{arrow2: 0},
-		{close: 0},
 		{profile: 0},
 		{stats: 0},
 		{charts: 0},
 		{speedPerQTXT: 0},
 		{box2: 0},
 		{UserNameTXT: 0},
-		{close2: 0},
+		{close: 0},
 		{BadgesTXT: 0},
 		{speedperquestions: 0},
 		{coinsTXT: 0},
@@ -6340,7 +6321,6 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		{texttest: 0},
 		{background: 0},
 		{topcloseicon: 0},
-		{wheel: 0},
 		{spin: 0},
 		{buttonprofile: 0},
 		{buttonshop: 0},
@@ -6362,13 +6342,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		{Yaxis: 0},
 		{blackball1: 0},
 		{blackball2: 0},
-		{row1: 0},
-		{row2: 0},
-		{row3: 0},
-		{row4: 0},
 		{answer2: 0},
-		{yellowball1: 0},
-		{yellowball2: 0},
 		{blueball1: 0},
 		{blueball2: 0},
 		{redball1: 0},
@@ -6394,7 +6368,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		{barDiamond: 0},
 		{"5fwDiamond": 0},
 		{SpriteDiamond: 0},
-		{ScoreTextDiamond: 0},
+		{ScoreTXT: 0},
 		{FaderDiamond: 0},
 		{BGDiamond: 0},
 		{nextbtnfwDiamond: 0},
@@ -6408,17 +6382,6 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		{LiteTween3: 0},
 		{LiteTween4: 0},
 		{fanfwDiamond: 0},
-		{ScoreTextDiamond2: 0},
-		{ScoreTextDiamond3: 0},
-		{ScoreTextDiamond4: 0},
-		{ScoreTextDiamond5: 0},
-		{ScoreTextDiamond6: 0},
-		{ScoreTextDiamond7: 0},
-		{ScoreTextDiamond8: 0},
-		{ScoreTextDiamond9: 0},
-		{ScoreTextDiamond10: 0},
-		{ScoreTextDiamond11: 0},
-		{replay2: 0},
 		{elimulogo2: 0},
 		{Sprite9: 0},
 		{how_to_play: 0},
@@ -6433,20 +6396,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		{ShapeIdentityCoinsText: 0},
 		{logo: 0},
 		{Video: 0},
-		{doneloading: 0},
-		{BestScore: 0},
-		{badges: 0},
-		{numberOfPlay: 0},
-		{sound: 0},
-		{countplay: 0},
-		{slow: 0},
-		{spinResdy: 0},
-		{woncount: 0},
-		{Found: 0},
-		{updateUserId: 0},
-		{updateUsername: 0},
-		{updateEmail: 0},
-		{updateDisplayPicture: 0},
+		{PlayerNameTXT: 0},
 		{index: 0},
 		{photoIndex: 0},
 		{Player_Nickname: 0},
@@ -6578,106 +6528,24 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 	}
 
 	self.C3_ExpressionFuncs = [
-		() => "",
-		() => 262,
-		() => 115,
-		() => 0.4,
-		() => 1800,
-		() => 0.5,
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			return () => v0.GetValue();
 		},
-		() => "wel",
-		() => 100,
-		() => 1,
-		() => 0,
-		() => "wheel",
-		() => 500,
-		() => "spin",
-		() => 250,
-		() => 50,
-		p => {
-			const v0 = p._GetNode(0).GetVar();
-			return () => ("users/" + v0.GetValue());
-		},
-		p => {
-			const v0 = p._GetNode(0).GetVar();
-			const f1 = p._GetNode(1).GetBoundMethod();
-			const v2 = p._GetNode(2).GetVar();
-			const v3 = p._GetNode(3).GetVar();
-			return () => (((((and((("{ \"email\" :\"" + v0.GetValue()) + "\",\n\"lastlogin\" : "), f1("Date.now()")) + ", \"displayPicture\" : \"") + v2.GetValue()) + "\" , \"userName\" : \"") + v3.GetValue()) + "\" }");
-		},
-		() => "play",
-		() => 118,
-		() => 125,
-		() => 20,
-		() => 3,
-		() => 2,
-		() => 4,
-		() => 5,
-		() => "playernickname",
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0("playernickname");
-		},
-		() => "playeryear",
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0("playeryear");
-		},
-		p => {
-			const v0 = p._GetNode(0).GetVar();
-			const v1 = p._GetNode(1).GetVar();
-			return () => (v0.GetValue() - v1.GetValue());
-		},
-		() => "topcoin",
-		() => 82,
-		() => 81,
-		() => "topclose",
-		() => 80,
-		() => 83,
-		() => "avatars",
-		() => 128,
-		() => 1.5,
-		p => {
-			const n0 = p._GetNode(0);
-			return () => n0.ExpBehavior();
-		},
-		() => 7,
-		() => "won",
-		() => 0.3,
-		() => 0.1,
-		() => 0.8,
-		() => 0.7,
-		() => 200,
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => (700 + f0(450));
-		},
-		() => -300,
-		() => 40,
-		() => 10,
-		() => 172,
-		() => 173,
-		() => "wonpos",
-		p => {
-			const n0 = p._GetNode(0);
-			return () => n0.ExpObject();
-		},
-		() => -10,
-		() => "coindone",
-		() => 300,
 		() => "photonumber",
 		() => "color",
+		() => 0,
+		() => "",
 		() => "box",
 		() => 700,
 		() => 650,
+		() => 1,
 		() => "signin",
 		() => 520,
 		() => 160,
 		() => 0.2,
 		() => "signup",
+		() => 300,
 		() => 103,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
@@ -6690,6 +6558,10 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		},
 		() => 793,
 		() => 786,
+		p => {
+			const n0 = p._GetNode(0);
+			return () => n0.ExpObject();
+		},
 		() => "123456",
 		() => 70,
 		() => "photoindex",
@@ -6698,6 +6570,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			return () => f0();
 		},
 		() => "playername",
+		() => "playernickname",
 		() => "playerschoolname",
 		() => "playerparentemail",
 		() => "playergender",
@@ -6706,11 +6579,20 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			const n0 = p._GetNode(0);
 			return () => (2021 - n0.ExpObject());
 		},
+		() => "playeryear",
+		() => 100,
+		() => 5,
 		() => 71,
+		() => 50,
+		() => 0.5,
+		() => 20,
 		() => 180,
 		() => 79,
+		() => 262,
+		() => 115,
 		() => 55,
 		() => 150,
+		() => 83,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0("photoindex");
@@ -6721,12 +6603,25 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			const f2 = p._GetNode(2).GetBoundMethod();
 			return () => ((((("Error" + f0()) + ": :") + f1()) + ": :") + f2());
 		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("playernickname");
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("playeryear");
+		},
 		() => "logo1",
+		() => 2,
 		() => "logo2",
 		() => 2.5,
+		() => 3,
+		() => 4,
 		() => 6,
+		() => 7,
 		() => 8,
 		() => 9,
+		() => 10,
 		() => 11,
 		() => 12,
 		() => 13,
@@ -6755,6 +6650,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		() => 37,
 		() => 38,
 		() => 39,
+		() => 40,
 		() => 41,
 		() => 42,
 		() => 43,
@@ -6776,6 +6672,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		() => 600,
 		() => "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
 		() => "level1",
+		() => 250,
 		() => "audio",
 		() => "level2",
 		() => "level3",
@@ -6783,54 +6680,54 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		() => "level5",
 		() => "level6",
 		() => "customstyle.css",
-		() => "st-coins",
-		() => "st-score",
-		() => "Read User Data",
-		() => "badge",
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0("badge");
-		},
-		() => "numberofplay",
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0("numberofplay");
-		},
-		() => "bestscore",
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0("bestscore");
-		},
-		() => "playercoin",
-		() => "playerspeed",
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0("playerspeed");
-		},
-		() => "playerbestscore",
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0("playerbestscore");
-		},
-		() => "Profile",
-		() => "profilePage",
-		() => 900,
-		() => "profilePos",
-		() => 400,
-		() => "profile",
-		() => 91,
-		() => 309,
-		() => -1023,
-		() => "Total Coins: 0",
-		() => -717750023016447,
-		() => "Background",
-		() => "Avatar",
-		() => "Startup - Shape Identity",
-		() => "shape",
-		() => 319,
+		() => 0.4,
 		() => "st_score",
 		() => "st_coins",
-		() => 176,
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (n0.ExpObject() + 173);
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (n0.ExpObject() - 331);
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (n0.ExpObject() + 14);
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (n0.ExpObject() - 130);
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (n0.ExpObject() - 10);
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (n0.ExpObject() + 126);
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (n0.ExpObject() - 120);
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (n0.ExpObject() + 309);
+		},
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => and("Score: ", v0.GetValue());
+		},
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => and("Coins: ", v0.GetValue());
+		},
+		() => "Read User Data",
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("playername");
+		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0("st_score");
@@ -6839,11 +6736,31 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0("st_coins");
 		},
-		p => {
-			const v0 = p._GetNode(0).GetVar();
-			return () => and("Score: ", v0.GetValue());
-		},
+		() => "Profile",
+		() => "profileView",
+		() => 201,
+		() => 411,
+		() => -1023,
+		() => -308,
+		() => -717750023016447,
+		() => -500,
+		() => 0.25,
+		() => 1250,
+		() => 0.1,
+		() => "Background",
+		() => "Avatar",
+		() => "Startup - Shape Identity",
+		() => "shape",
+		() => 319,
+		() => "topcoin",
+		() => 82,
+		() => 81,
+		() => 176,
+		() => 400,
+		() => 500,
+		() => 1.5,
 		() => "Shape Question",
+		() => 200,
 		() => "Spape Options",
 		() => "Shape audio",
 		() => "Triangle - 1",
@@ -6886,6 +6803,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			const f1 = p._GetNode(1).GetBoundMethod();
 			return () => (f0(f1("st_score")) + 5);
 		},
+		() => 0.3,
 		() => -1000,
 		() => 1000,
 		() => "The End - Shape Identity",
@@ -6895,7 +6813,10 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		() => 435,
 		() => 370,
 		() => "Coins",
+		() => "won",
+		() => "wonpos",
 		() => "move",
+		() => 0.7,
 		() => "back",
 		() => "Next Question",
 		p => {
@@ -6912,9 +6833,9 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		() => "shapeID",
 		() => 536,
 		() => 121,
-		() => 0.25,
 		() => "shapeMatch",
 		() => "Wheel Spin - Level",
+		() => "spin",
 		() => -50,
 		p => {
 			const n0 = p._GetNode(0);
@@ -6928,11 +6849,6 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 
 {
 	const scriptsInEvents = {
-
-		async Menu_Event1_Act11(runtime, localVars)
-		{
-			runtime.globalVars.CurrentYear = new Date().getFullYear();
-		},
 
 		async Gameplay_Event1_Act3(runtime, localVars)
 		{
