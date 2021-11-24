@@ -6037,12 +6037,10 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		C3.Plugins.Text.Acts.SetFontColor,
 		C3.Plugins.Text.Acts.SetWidth,
 		C3.Plugins.Text.Acts.Destroy,
-		C3.Plugins.Touch.Cnds.OnTapGestureObject,
+		C3.Plugins.System.Acts.ResetGlobals,
 		C3.ScriptsInEvents.Shapeidentity_Event2_Act1,
 		C3.ScriptsInEvents.Shapeidentity_Event2_Act8,
-		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Acts.AdvancedReadData,
-		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Cnds.OnAdvRead,
-		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Exps.customData,
+		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Cnds.OnSimpleTrigger,
 		C3.Plugins.Sprite.Cnds.CompareX,
 		C3.Plugins.System.Exps.int,
 		C3.Plugins.Browser.Acts.GoToURLWindow,
@@ -6785,29 +6783,31 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		() => "level5",
 		() => "level6",
 		() => "customstyle.css",
-		() => "playercoin",
-		() => "playerspeed",
-		() => "playerbestscore",
-		() => "numberofplay",
-		() => "bestscore",
+		() => "st-coins",
+		() => "st-score",
 		() => "Read User Data",
 		() => "badge",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0("badge");
 		},
+		() => "numberofplay",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0("numberofplay");
 		},
+		() => "bestscore",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0("bestscore");
 		},
+		() => "playercoin",
+		() => "playerspeed",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0("playerspeed");
 		},
+		() => "playerbestscore",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0("playerbestscore");
@@ -6828,16 +6828,16 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		() => "Startup - Shape Identity",
 		() => "shape",
 		() => 319,
-		() => "ShapeIdentityScore",
-		() => "ShapeIdentityCoins",
+		() => "st_score",
+		() => "st_coins",
 		() => 176,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0("ShapeIdentityScore");
+			return () => f0("st_score");
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0("ShapeIdentityCoins");
+			return () => f0("st_coins");
 		},
 		p => {
 			const v0 = p._GetNode(0).GetVar();
@@ -6884,7 +6884,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const f1 = p._GetNode(1).GetBoundMethod();
-			return () => (f0(f1("ShapeIdentityScore")) + 5);
+			return () => (f0(f1("st_score")) + 5);
 		},
 		() => -1000,
 		() => 1000,
@@ -6905,7 +6905,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const f1 = p._GetNode(1).GetBoundMethod();
-			return () => (f0(f1("ShapeIdentityCoins")) + 2);
+			return () => (f0(f1("st_coins")) + 2);
 		},
 		() => "https://mathdesk.e-limu.org/",
 		() => "Maths Ninja",
