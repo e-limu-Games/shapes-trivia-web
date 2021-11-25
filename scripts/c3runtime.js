@@ -6033,6 +6033,8 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		C3.ScriptsInEvents.Gameplay_Event11_Act3,
 		C3.ScriptsInEvents.Gameplay_Event12_Act3,
 		C3.ScriptsInEvents.Gameplay_Event13_Act3,
+		C3.Plugins.Browser.Acts.RequestFullScreen,
+		C3.Plugins.Browser.Acts.LockOrientation,
 		C3.Plugins.Browser.Acts.LoadStyleSheet,
 		C3.Plugins.Text.Acts.SetText,
 		C3.Plugins.Sprite.Acts.SetPos,
