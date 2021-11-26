@@ -6050,6 +6050,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		C3.ScriptsInEvents.Shapeidentity_Event2_Act8,
 		C3.Plugins.Sprite.Acts.Spawn,
 		C3.Plugins.System.Exps.int,
+		C3.ScriptsInEvents.Shapeidentity_Event287_Act4,
 		C3.Plugins.System.Acts.Wait,
 		C3.Plugins.Browser.Acts.GoToURLWindow,
 		C3.ScriptsInEvents.Taskmenu_Event1_Act3,
@@ -6507,6 +6508,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		{PlayerNameTXT: 0},
 		{PlatformInfo: 0},
 		{InstructionText: 0},
+		{NextLevel: 0},
 		{index: 0},
 		{photoIndex: 0},
 		{Player_Nickname: 0},
@@ -6928,7 +6930,14 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		() => 590,
 		() => 734,
 		() => 435,
+		() => 900,
 		() => 370,
+		() => 603,
+		() => 432,
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => ((v0.GetValue() % 6) + 1);
+		},
 		() => "Coins",
 		() => "won",
 		() => "wonpos",
@@ -6945,12 +6954,13 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			const f1 = p._GetNode(1).GetBoundMethod();
 			return () => (f0(f1("st_coins")) + 2);
 		},
-		() => "https://mathdesk.e-limu.org/",
+		() => "https://e-limu.org/all-products/",
 		() => "Maths Ninja",
 		() => "shapeID",
 		() => 536,
 		() => 121,
 		() => "shapeMatch",
+		() => "https://mathdesk.e-limu.org/",
 		() => "Wheel Spin - Level",
 		() => "spin",
 		() => -50,
@@ -7107,6 +7117,11 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		async Shapeidentity_Event2_Act8(runtime, localVars)
 		{
 			setQuestion(runtime);
+		},
+
+		async Shapeidentity_Event287_Act4(runtime, localVars)
+		{
+			shuffleShapes(runtime);
 		},
 
 		async Taskmenu_Event1_Act3(runtime, localVars)
