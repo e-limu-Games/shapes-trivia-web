@@ -6797,7 +6797,6 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		() => "level5",
 		() => "level6",
 		() => "customstyle.css",
-		() => 0.4,
 		() => "st_score",
 		() => "st_coins",
 		p => {
@@ -6810,11 +6809,15 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		},
 		p => {
 			const n0 = p._GetNode(0);
-			return () => (n0.ExpObject() + 14);
+			return () => (n0.ExpObject() + 56);
 		},
 		p => {
 			const n0 = p._GetNode(0);
 			return () => (n0.ExpObject() - 130);
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (n0.ExpObject() + 14);
 		},
 		p => {
 			const n0 = p._GetNode(0);
