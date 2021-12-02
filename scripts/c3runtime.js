@@ -7100,7 +7100,7 @@ TargetY(){return this._targetY},DistanceToTarget(){const x=this._minorAxis*Math.
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const f1 = p._GetNode(1).GetBoundMethod();
 			const v2 = p._GetNode(2).GetVar();
-			return () => (f0(f1("st_coins")) + v2.GetValue());
+			return () => (f0(f1("st_coins")) + Math.round((v2.GetValue() / 2)));
 		},
 		() => "https://e-limu.org/all-products/",
 		() => "Maths Ninja",
@@ -7230,7 +7230,10 @@ TargetY(){return this._targetY},DistanceToTarget(){const x=this._minorAxis*Math.
 		() => 3000,
 		() => 159,
 		() => 152,
-		() => 256,
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0(256, 800);
+		},
 		() => 112,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
