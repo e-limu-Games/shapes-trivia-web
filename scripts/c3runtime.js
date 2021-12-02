@@ -5944,6 +5944,123 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 'use strict';{const C3=self.C3;C3.Behaviors.solid.Exps={}};
 
 
+'use strict';{const C3=self.C3;C3.Behaviors.Platform=class PlatformBehavior extends C3.SDKBehaviorBase{constructor(opts){super(opts)}Release(){super.Release()}}};
+
+
+'use strict';{const C3=self.C3;C3.Behaviors.Platform.Type=class PlatformType extends C3.SDKBehaviorTypeBase{constructor(behaviorType){super(behaviorType)}Release(){super.Release()}OnCreate(){}}};
+
+
+'use strict';{const C3=self.C3;const IBehaviorInstance=self.IBehaviorInstance;const MAX_SPEED=0;const ACCELERATION=1;const DECELERATION=2;const JUMP_STRENGTH=3;const GRAVITY=4;const MAX_FALL_SPEED=5;const DOUBLE_JUMP=6;const JUMP_SUSTAIN=7;const DEFAULT_CONTROLS=8;const ENABLE=9;function accelerate(velocity,min_speed,max_speed,acceleration,dt){const min=min_speed*dt;const max=max_speed*dt;return C3.clamp(velocity*dt+.5*acceleration*dt*dt,min,max)}C3.Behaviors.Platform.Instance=class PlatformInstance extends C3.SDKBehaviorInstanceBase{constructor(behInst,
+properties){super(behInst);this._keyboardDisposables=null;this._leftKey=false;this._rightKey=false;this._jumpKey=false;this._jumped=false;this._doubleJumped=false;this._canDoubleJump=false;this._ignoreInput=false;this._simLeft=false;this._simRight=false;this._simJump=false;this._lastFloorObject=null;this._loadFloorUid=-1;this._lastFloorX=0;this._lastFloorY=0;this._floorIsJumpthru=false;this._wasOnFloor=false;this._wasOverJumpthru=!!this._runtime.GetCollisionEngine().TestOverlapJumpthru(this._inst);
+this._loadJumpthruUid=-1;this._animMode="stopped";this._fallThrough=0;this._isFirstTick=true;this._dx=0;this._dy=0;this._downX=0;this._downY=0;this._rightX=0;this._rightY=0;this._g=1500;this._g1=1500;this._ga=C3.toRadians(90);this._maxSpeed=330;this._acc=1500;this._dec=1500;this._jumpStrength=650;this._maxFall=1E3;this._enableDoubleJump=false;this._jumpSustain=0;this._sustainTime=0;this._defaultControls=true;this._ceilingCollisionMode=0;this._isEnabled=true;if(properties){this._maxSpeed=properties[MAX_SPEED];
+this._acc=properties[ACCELERATION];this._dec=properties[DECELERATION];this._jumpStrength=properties[JUMP_STRENGTH];this._g=properties[GRAVITY];this._maxFall=properties[MAX_FALL_SPEED];this._enableDoubleJump=!!properties[DOUBLE_JUMP];this._jumpSustain=properties[JUMP_SUSTAIN]/1E3;this._defaultControls=!!properties[DEFAULT_CONTROLS];this._isEnabled=!!properties[ENABLE]}const rt=this._runtime.Dispatcher();this._disposables=new C3.CompositeDisposable(C3.Disposable.From(rt,"instancedestroy",e=>this._OnInstanceDestroyed(e.instance)),
+C3.Disposable.From(rt,"afterload",e=>this._OnAfterLoad()));if(this._defaultControls)this._BindEvents();if(this._isEnabled)this._StartPostTicking();this._UpdateGravity();this._inst.GetUnsavedDataMap().set("isPlatformBehavior",true)}Release(){if(this._keyboardDisposables){this._keyboardDisposables.Release();this._keyboardDisposables=null}this._lastFloorObject=null;this._wasOverJumpthru=null;super.Release()}_BindEvents(){if(this._keyboardDisposables)return;const rt=this._runtime.Dispatcher();this._keyboardDisposables=
+new C3.CompositeDisposable(C3.Disposable.From(rt,"keydown",e=>this._OnKeyDown(e.data)),C3.Disposable.From(rt,"keyup",e=>this._OnKeyUp(e.data)),C3.Disposable.From(rt,"window-blur",()=>this._OnWindowBlur()))}_UnBindEvents(){if(!this._keyboardDisposables)return;this._keyboardDisposables.Release();this._keyboardDisposables=null}_OnInstanceDestroyed(inst){if(this._lastFloorObject===inst)this._lastFloorObject=null;if(this._wasOverJumpthru===inst)this._wasOverJumpthru=null}_OnKeyDown(data){switch(data["key"]){case "ArrowLeft":this._leftKey=
+true;break;case "ArrowRight":this._rightKey=true;break;case "ArrowUp":this._jumpKey=true;break}}_OnKeyUp(data){switch(data["key"]){case "ArrowLeft":this._leftKey=false;break;case "ArrowRight":this._rightKey=false;break;case "ArrowUp":this._jumpKey=false;this._jumped=false;break}}_OnWindowBlur(){this._leftKey=false;this._rightKey=false;this._jumpKey=false;this._jumped=false}SaveToJson(){return{"ii":this._ignoreInput,"lfx":this._lastFloorX,"lfy":this._lastFloorY,"lfo":this._lastFloorObject?this._lastFloorObject.GetUID():
+-1,"am":this._animMode,"en":this._isEnabled,"fall":this._fallThrough,"ft":this._isFirstTick,"dx":this._dx,"dy":this._dy,"ms":this._maxSpeed,"acc":this._acc,"dec":this._dec,"js":this._jumpStrength,"g":this._g,"g1":this._g1,"mf":this._maxFall,"wof":this._wasOnFloor,"woj":this._wasOverJumpthru?this._wasOverJumpthru.GetUID():-1,"ga":this._ga,"edj":this._enableDoubleJump,"cdj":this._canDoubleJump,"dj":this._doubleJumped,"sus":this._jumpSustain,"dc":this._defaultControls,"cc":this._ceilingCollisionMode}}LoadFromJson(o){this._ignoreInput=
+o["ii"];this._lastFloorX=o["lfx"];this._lastFloorY=o["lfy"];this._loadFloorUid=o["lfo"];this._animMode=o["am"];const isEnabled=o["en"];this._fallThrough=o["fall"];this._isFirstTick=o["ft"];this._dx=o["dx"];this._dy=o["dy"];this._maxSpeed=o["ms"];this._acc=o["acc"];this._dec=o["dec"];this._jumpStrength=o["js"];this._g=o["g"];this._g1=o["g1"];this._maxFall=o["mf"];this._wasOnFloor=o["wof"];this._loadJumpthruUid=o["woj"];this._ga=o["ga"];this._enableDoubleJump=o["edj"];this._canDoubleJump=o["cdj"];this._doubleJumped=
+o["dj"];this._jumpSustain=o["sus"];this._defaultControls=o["dc"];this._ceilingCollisionMode=o["cc"]||0;this._leftKey=false;this._rightKey=false;this._jumpKey=false;this._jumped=false;this._simLeft=false;this._simRight=false;this._simJump=false;this._sustainTime=0;if(this._defaultControls)this._BindEvents();else this._UnBindEvents();this._SetEnabled(isEnabled);this._UpdateGravity()}_OnAfterLoad(){if(this._loadFloorUid===-1)this._lastFloorObject=null;else this._lastFloorObject=this._runtime.GetInstanceByUID(this._loadFloorUid);
+if(this._loadJumpthruUid===-1)this._wasOverJumpthru=null;else this._wasOverJumpthru=this._runtime.GetInstanceByUID(this._loadJumpthruUid)}_UpdateGravity(){this._downX=Math.cos(this._ga);this._downY=Math.sin(this._ga);this._rightX=Math.cos(this._ga-Math.PI/2);this._rightY=Math.sin(this._ga-Math.PI/2);this._downX=C3.round6dp(this._downX);this._downY=C3.round6dp(this._downY);this._rightX=C3.round6dp(this._rightX);this._rightY=C3.round6dp(this._rightY);this._g1=this._g;if(this._g<0){this._downX*=-1;this._downY*=
+-1;this._g=Math.abs(this._g)}}_GetGDir(){if(this._g<0)return-1;else return 1}_IsOnFloor(){const wi=this._inst.GetWorldInfo();const collisionEngine=this._runtime.GetCollisionEngine();const inst=this._inst;const lfo=this._lastFloorObject;const oldX=wi.GetX();const oldY=wi.GetY();wi.OffsetXY(this._downX,this._downY);wi.SetBboxChanged();if(lfo&&collisionEngine.TestOverlap(inst,lfo)&&(!lfo.GetObjectClass().HasSolidBehavior()||collisionEngine.IsSolidCollisionAllowed(lfo,inst))){wi.SetXY(oldX,oldY);wi.SetBboxChanged();
+return lfo}else{let ret=collisionEngine.TestOverlapSolid(inst);let ret2=null;if(!ret&&this._fallThrough===0)ret2=collisionEngine.TestOverlapJumpthru(inst,true);wi.SetXY(oldX,oldY);wi.SetBboxChanged();if(ret)if(collisionEngine.TestOverlap(inst,ret))return null;else{this._floorIsJumpthru=false;return ret}if(ret2&&ret2.length){let j=0;for(let i=0,len=ret2.length;i<len;++i){ret2[j]=ret2[i];if(!collisionEngine.TestOverlap(inst,ret2[i]))++j}if(j>=1){this._floorIsJumpthru=true;return ret2[0]}}return null}}PostTick(){if(!this._isEnabled)return;
+const dt=this._runtime.GetDt(this._inst);if(!this._jumpKey&&!this._simJump)this._jumped=false;let left=this._leftKey||this._simLeft;let right=this._rightKey||this._simRight;let jumpkey=this._jumpKey||this._simJump;let jump=jumpkey&&!this._jumped;this._simLeft=false;this._simRight=false;this._simJump=false;if(this._ignoreInput){left=false;right=false;jumpkey=false;jump=false}if(!jumpkey)this._sustainTime=0;this._HandleFirstTick();const [mx,my,floorMoved]=this._TrackMovingPlatform();const floor=this._IsOnFloor();
+const didJustLandOnFloor=floor&&!this._wasOnFloor;const isStuck=this._MaybePushOutSolid();if(isStuck)return;this._TrackFloor(floor,floorMoved,mx,jumpkey);jump=this._HandleJump(floor,jump,jumpkey);if(!floor)this._ApplyJumpGravity(jump,jumpkey,dt);this._wasOnFloor=!!floor;const hacc=this._ApplyHorizontalAcceleration(left,right,dt);let landed=false;let downMagnitude=0;if(this._dx!==0)landed=this._HandleHorizontalMovement(dt,hacc,floor,jump);if(this._dy!==0){const [l,dm]=this._HandleVerticalMovement(dt,
+floor);landed=landed||l;downMagnitude=dm}if(!landed&&didJustLandOnFloor&&this._dy<0&&downMagnitude>0){this._dy=0;landed=true}this._HandleAnimationTriggers(floor,landed,jump);if(this._fallThrough>0)this._fallThrough--;this._wasOverJumpthru=this._runtime.GetCollisionEngine().TestOverlapJumpthru(this._inst)}_HandleFirstTick(){if(!this._isFirstTick)return;const inst=this._inst;const collisionEngine=this._runtime.GetCollisionEngine();if(collisionEngine.TestOverlapSolid(inst)||collisionEngine.TestOverlapJumpthru(inst))collisionEngine.PushOutSolid(inst,
+-this._downX,-this._downY,4,true);this._isFirstTick=false}_TrackMovingPlatform(){const lastFloor=this._lastFloorObject;const lastFloorWi=lastFloor?lastFloor.GetWorldInfo():null;let mx=0;let my=0;let floorMoved=false;if(lastFloor&&this._dy===0&&(lastFloorWi.GetY()!==this._lastFloorY||lastFloorWi.GetX()!==this._lastFloorX)){const inst=this._inst;const wi=inst.GetWorldInfo();const collisionEngine=this._runtime.GetCollisionEngine();const lfx=lastFloorWi.GetX();const lfy=lastFloorWi.GetY();mx=lfx-this._lastFloorX;
+my=lfy-this._lastFloorY;wi.OffsetXY(mx,my);wi.SetBboxChanged();this._lastFloorX=lfx;this._lastFloorY=lfy;floorMoved=true;if(collisionEngine.TestOverlapSolid(inst))collisionEngine.PushOutSolid(inst,-mx,-my,Math.hypot(mx,my)*2.5)}return[mx,my,floorMoved]}_MaybePushOutSolid(){const inst=this._inst;const wi=inst.GetWorldInfo();const collisionEngine=this._runtime.GetCollisionEngine();const collInst=collisionEngine.TestOverlapSolid(inst);if(!collInst)return false;const instWidth=Math.abs(wi.GetWidth());
+const instHeight=Math.abs(wi.GetHeight());if(inst.GetSavedDataMap().get("inputPredicted")){collisionEngine.PushOutSolid(inst,-this._downX,-this._downY,10,false);return false}else if(collisionEngine.PushOutSolidAxis(inst,-this._downX,-this._downY,instHeight/8)){collisionEngine.RegisterCollision(inst,collInst);return false}else if(collisionEngine.PushOutSolidAxis(inst,this._rightX,this._rightY,instWidth/2)){collisionEngine.RegisterCollision(inst,collInst);return false}else if(collisionEngine.PushOutSolidAxis(inst,
+this._downX,this._downY,instHeight/2)){collisionEngine.RegisterCollision(inst,collInst);return false}else if(collisionEngine.PushOutSolidNearest(inst,Math.max(instWidth,instHeight)/2)){collisionEngine.RegisterCollision(inst,collInst);return false}else return true}_TrackFloor(floor,floorMoved,mx,jumpkey){const inst=this._inst;const collisionEngine=this._runtime.GetCollisionEngine();if(floor){const downX=this._downX;const downY=this._downY;const rightX=this._rightX;const rightY=this._rightY;this._doubleJumped=
+false;this._canDoubleJump=false;if(this._dy>0){if(!this._wasOnFloor){collisionEngine.PushInFractional(inst,-downX,-downY,floor,16);this._wasOnFloor=true}this._dy=0}if(this._lastFloorObject!==floor){this._lastFloorObject=floor;const floorWi=floor.GetWorldInfo();this._lastFloorX=floorWi.GetX();this._lastFloorY=floorWi.GetY();collisionEngine.RegisterCollision(inst,floor)}else if(floorMoved){const collInst=collisionEngine.TestOverlapSolid(inst);if(collInst){collisionEngine.RegisterCollision(inst,collInst);
+if(mx!==0)if(mx>0)collisionEngine.PushOutSolid(inst,-rightX,-rightY);else collisionEngine.PushOutSolid(inst,rightX,rightY);collisionEngine.PushOutSolid(inst,-downX,-downY)}}}else if(!jumpkey)this._canDoubleJump=true}_HandleJump(floor,jump,jumpkey){if(floor&&jump||!floor&&this._enableDoubleJump&&jumpkey&&this._canDoubleJump&&!this._doubleJumped){const inst=this._inst;const wi=inst.GetWorldInfo();const collisionEngine=this._runtime.GetCollisionEngine();const oldX=wi.GetX();const oldY=wi.GetY();wi.OffsetXY(-this._downX,
+-this._downY);wi.SetBboxChanged();if(!collisionEngine.TestOverlapSolid(inst)){this._sustainTime=this._jumpSustain;this.Trigger(C3.Behaviors.Platform.Cnds.OnJump);this._animMode="jumping";this._dy=-this._jumpStrength;jump=true;if(floor)this._jumped=true;else this._doubleJumped=true}else jump=false;wi.SetXY(oldX,oldY);wi.SetBboxChanged()}return jump}_ApplyJumpGravity(jump,jumpkey,dt){if(jumpkey&&this._sustainTime>0){this._dy=-this._jumpStrength;this._sustainTime-=dt}else{this._lastFloorObject=null;
+this._dy+=this._g*dt;if(this._dy>this._maxFall)this._dy=this._maxFall}if(jump)this._jumped=true}_ApplyHorizontalAcceleration(left,right,dt){const acc=this._acc;const dec=this._dec;if(left===right)if(this._dx<0){this._dx+=dec*dt;if(this._dx>0)this._dx=0}else if(this._dx>0){this._dx-=dec*dt;if(this._dx<0)this._dx=0}let hacc=0;if(left&&!right)if(this._dx>0)hacc=-(acc+dec);else hacc=-acc;if(right&&!left)if(this._dx<0)hacc=acc+dec;else hacc=acc;this._dx+=hacc*dt;this._dx=C3.clamp(this._dx,-this._maxSpeed,
+this._maxSpeed);return hacc}_HandleHorizontalMovement(dt,hacc,floor,jump){const inst=this._inst;const wi=inst.GetWorldInfo();const collisionEngine=this._runtime.GetCollisionEngine();const downX=this._downX;const downY=this._downY;const rightX=this._rightX;const rightY=this._rightY;const maxSpeed=this._maxSpeed;let landed=false;let oldX=wi.GetX();let oldY=wi.GetY();const mx=accelerate(this._dx,-maxSpeed,maxSpeed,hacc,dt)*rightX;const my=accelerate(this._dx,-maxSpeed,maxSpeed,hacc,dt)*rightY;wi.OffsetXY(rightX*
+(this._dx>1?1:-1)-downX,rightY*(this._dx>1?1:-1)-downY);wi.SetBboxChanged();let isJumpthru=false;const slopeTooSteep=collisionEngine.TestOverlapSolid(inst);wi.SetXY(oldX+mx,oldY+my);wi.SetBboxChanged();let obstacle=collisionEngine.TestOverlapSolid(inst);if(!obstacle&&floor){obstacle=collisionEngine.TestOverlapJumpthru(inst);if(obstacle){wi.SetXY(oldX,oldY);wi.SetBboxChanged();if(collisionEngine.TestOverlap(inst,obstacle)){obstacle=null;isJumpthru=false}else isJumpthru=true;wi.SetXY(oldX+mx,oldY+my);
+wi.SetBboxChanged()}}if(obstacle){let pushDist=Math.abs(this._dx*dt)+2;if(slopeTooSteep||!collisionEngine.PushOutSolid(inst,-downX,-downY,pushDist,isJumpthru,obstacle)){collisionEngine.RegisterCollision(inst,obstacle);pushDist=Math.max(Math.abs(this._dx*dt*2.5),30);if(!collisionEngine.PushOutSolid(inst,rightX*(this._dx<0?1:-1),rightY*(this._dx<0?1:-1),pushDist,false)){wi.SetXY(oldX,oldY);wi.SetBboxChanged()}else if(floor&&!isJumpthru&&!this._floorIsJumpthru){oldX=wi.GetX();oldY=wi.GetY();wi.OffsetXY(downX,
+downY);if(collisionEngine.TestOverlapSolid(inst)){if(!collisionEngine.PushOutSolid(inst,-downX,-downY,3,false)){wi.SetXY(oldX,oldY);wi.SetBboxChanged()}}else{wi.SetXY(oldX,oldY);wi.SetBboxChanged()}}if(!isJumpthru)this._dx=0}else if(!slopeTooSteep&&!jump&&Math.abs(this._dy)<Math.abs(this._jumpStrength/4)){this._dy=0;if(!floor)landed=true}}else{const newFloor=this._IsOnFloor();if(floor&&!newFloor){const mag=Math.ceil(Math.abs(this._dx*dt))+2;oldX=wi.GetX();oldY=wi.GetY();wi.OffsetXY(downX*mag,downY*
+mag);wi.SetBboxChanged();if(collisionEngine.TestOverlapSolid(inst)||collisionEngine.TestOverlapJumpthru(inst))collisionEngine.PushOutSolid(inst,-downX,-downY,mag+2,true);else{wi.SetXY(oldX,oldY);wi.SetBboxChanged()}}else if(newFloor){if(!floor&&this._floorIsJumpthru){this._lastFloorObject=newFloor;const floorWi=newFloor.GetWorldInfo();this._lastFloorX=floorWi.GetX();this._lastFloorY=floorWi.GetY();this._dy=0;landed=true}if(this._dy===0)collisionEngine.PushInFractional(inst,-downX,-downY,newFloor,
+16)}}return landed}_HandleVerticalMovement(dt,floor){const inst=this._inst;const wi=inst.GetWorldInfo();const collisionEngine=this._runtime.GetCollisionEngine();const downX=this._downX;const downY=this._downY;let landed=false;let oldX=wi.GetX();let oldY=wi.GetY();const downMagnitude=accelerate(this._dy,-Infinity,this._maxFall,this._g,dt);wi.OffsetXY(downMagnitude*downX,downMagnitude*downY);const newX=wi.GetX();const newY=wi.GetY();wi.SetBboxChanged();let collInst=collisionEngine.TestOverlapSolid(inst);
+let fellOnJumpthru=false;if(!collInst&&this._dy>0&&!floor){const allOver=this._fallThrough>0?null:collisionEngine.TestOverlapJumpthru(inst,true);if(allOver&&allOver.length){if(this._wasOverJumpthru){wi.SetXY(oldX,oldY);wi.SetBboxChanged();let j=0;for(let i=0,len=allOver.length;i<len;++i){allOver[j]=allOver[i];if(!collisionEngine.TestOverlap(inst,allOver[i]))++j}C3.truncateArray(allOver,j);wi.SetXY(newX,newY);wi.SetBboxChanged()}if(allOver.length>=1)collInst=allOver[0]}fellOnJumpthru=!!collInst}if(collInst){collisionEngine.RegisterCollision(inst,
+collInst);this._sustainTime=0;const pushDist=Math.max(Math.abs(this._dy*dt*1.1),2);if(!collisionEngine.PushOutSolid(inst,downX*(this._dy<0?1:-1),downY*(this._dy<0?1:-1),pushDist,fellOnJumpthru,collInst)){wi.SetXY(oldX,oldY);wi.SetBboxChanged();this._wasOnFloor=true;if(!fellOnJumpthru)this._dy=0}else{this._lastFloorObject=collInst;const collWi=collInst.GetWorldInfo();this._lastFloorX=collWi.GetX();this._lastFloorY=collWi.GetY();this._floorIsJumpthru=fellOnJumpthru;if(fellOnJumpthru)landed=true;if(this._dy>
+0||this._ceilingCollisionMode===0)this._dy=0;if(this._dy<0&&this._ceilingCollisionMode===1)collisionEngine.PushInFractional(inst,downX,downY,collInst,32)}}return[landed,downMagnitude]}_HandleAnimationTriggers(floor,landed,jump){if(this._animMode!=="falling"&&this._dy>0&&!floor){this.Trigger(C3.Behaviors.Platform.Cnds.OnFall);this._animMode="falling"}if((floor||landed)&&this._dy>=0)if(this._animMode==="falling"||landed||jump&&this._dy===0){this.Trigger(C3.Behaviors.Platform.Cnds.OnLand);if(this._dx===
+0&&this._dy===0)this._animMode="stopped";else this._animMode="moving"}else{if(this._animMode!=="stopped"&&this._dx===0&&this._dy===0){this.Trigger(C3.Behaviors.Platform.Cnds.OnStop);this._animMode="stopped"}if(this._animMode!=="moving"&&(this._dx!==0||this._dy!==0)&&!jump){this.Trigger(C3.Behaviors.Platform.Cnds.OnMove);this._animMode="moving"}}}_CheckIfStandingOnFloor(){if(this._dy!==0)return false;const inst=this._inst;const wi=this.GetWorldInfo();const collisionEngine=this._runtime.GetCollisionEngine();
+const oldX=wi.GetX();const oldY=wi.GetY();wi.OffsetXY(this._downX,this._downY);wi.SetBboxChanged();const ret=collisionEngine.TestOverlapSolid(inst);let ret2=null;if(!ret&&this._fallThrough===0)ret2=collisionEngine.TestOverlapJumpthru(inst,true);wi.SetXY(oldX,oldY);wi.SetBboxChanged();if(ret)return!collisionEngine.TestOverlap(inst,ret);if(ret2&&ret2.length){let j=0;for(let i=0,len=ret2.length;i<len;++i){ret2[j]=ret2[i];if(!collisionEngine.TestOverlap(inst,ret2[i]))j++}if(j>=1)return true}return false}_IsByWall(side){const inst=
+this._inst;const wi=this.GetWorldInfo();const collisionEngine=this._runtime.GetCollisionEngine();const oldX=wi.GetX();const oldY=wi.GetY();if(side===0)wi.OffsetXY(-this._rightX*2,-this._rightY*2);else wi.OffsetXY(this._rightX*2,this._rightY*2);wi.SetBboxChanged();if(!collisionEngine.TestOverlapSolid(inst)){wi.SetXY(oldX,oldY);wi.SetBboxChanged();return false}wi.OffsetXY(-this._downX*3,-this._downY*3);wi.SetBboxChanged();const ret=!!collisionEngine.TestOverlapSolid(inst);wi.SetXY(oldX,oldY);wi.SetBboxChanged();
+return ret}_FallThroughJumpThru(){const wi=this.GetWorldInfo();const oldX=wi.GetX();const oldY=wi.GetY();wi.OffsetXY(this._downX,this._downY);wi.SetBboxChanged();const overlaps=this._runtime.GetCollisionEngine().TestOverlapJumpthru(this._inst,false);wi.SetXY(oldX,oldY);wi.SetBboxChanged();if(!overlaps)return;this._fallThrough=3;this._lastFloorObject=null}_ResetDoubleJump(d){this._doubleJumped=!d}_GetSpeed(){return Math.hypot(this._dx,this._dy)}_GetMovingAngle(){return Math.atan2(this._dy,this._dx)}_IsJumping(){return this._dy<
+0}_IsFalling(){return this._dy>0}_SetMaxSpeed(ms){this._maxSpeed=Math.max(ms,0)}_GetMaxSpeed(){return this._maxSpeed}_SetAcceleration(acc){this._acc=Math.max(acc,0)}_GetAcceleration(){return this._acc}_SetDeceleration(dec){this._dec=Math.max(dec,0)}_GetDeceleration(){return this._dec}_SetJumpStrength(js){this._jumpStrength=Math.max(js,0)}_GetJumpStrength(){return this._jumpStrength}_SetMaxFallSpeed(mfs){this._maxFall=Math.max(mfs,0)}_GetMaxFallSpeed(){return this._maxFall}_SetGravity(grav){if(this._g1===
+grav)return;this._g=grav;this._UpdateGravity();const collisionEngine=this._runtime.GetCollisionEngine();const wi=this.GetWorldInfo();if(collisionEngine.TestOverlapSolid(this._inst)){collisionEngine.PushOutSolid(this._inst,this._downX,this._downY,10);wi.OffsetXY(this._downX*2,this._downY*2);wi.SetBboxChanged()}this._lastFloorObject=null}_GetGravity(){return this._g}_SetGravityAngle(a){a=C3.clampAngle(a);if(this._ga===a)return;this._ga=a;this._UpdateGravity();this._lastFloorObject=null}_GetGravityAngle(){return this._ga}_SetDoubleJumpEnabled(e){this._enableDoubleJump=
+!!e}_IsDoubleJumpEnabled(){return this._enableDoubleJump}_SetJumpSustain(s){this._jumpSustain=s}_GetJumpSustain(){return this._jumpSustain}_SetCeilingCollisionMode(m){this._ceilingCollisionMode=m}_GetCeilingCollisionMode(){return this._ceilingCollisionMode}_SetVectorX(x){this._dx=x}_GetVectorX(){return this._dx}_SetVectorY(y){this._dy=y}_GetVectorY(){return this._dy}_SimulateControl(ctrl){if(!this._isEnabled)return;switch(ctrl){case 0:this._simLeft=true;break;case 1:this._simRight=true;break;case 2:this._simJump=
+true;break}}_SetDefaultControls(d){d=!!d;if(this._defaultControls===d)return;this._defaultControls=d;if(this._defaultControls)this._BindEvents();else{this._UnBindEvents();this._OnWindowBlur()}}_IsDefaultControls(){return this._defaultControls}_SetIgnoreInput(i){this._ignoreInput=!!i}_IsIgnoreInput(){return this._ignoreInput}_SetEnabled(e){e=!!e;if(this._isEnabled===e)return;this._isEnabled=e;if(this._isEnabled)this._StartPostTicking();else{this._StopPostTicking();this._lastFloorObject=null;this._simLeft=
+false;this._simRight=false;this._simJump=false}}_IsEnabled(){return this._isEnabled}GetPropertyValueByIndex(index){switch(index){case MAX_SPEED:return this._GetMaxSpeed();case ACCELERATION:return this._GetAcceleration();case DECELERATION:return this._GetDeceleration();case JUMP_STRENGTH:return this._GetJumpStrength();case GRAVITY:return this._GetGravity();case MAX_FALL_SPEED:return this._GetMaxFallSpeed();case DOUBLE_JUMP:return this._IsDoubleJumpEnabled();case JUMP_SUSTAIN:return this._GetJumpSustain()*
+1E3;case DEFAULT_CONTROLS:return this._IsDefaultControls();case ENABLE:return this._IsEnabled()}}SetPropertyValueByIndex(index,value){switch(index){case MAX_SPEED:this._SetMaxSpeed(value);break;case ACCELERATION:this._SetAcceleration(value);break;case DECELERATION:this._SetDeceleration(value);break;case JUMP_STRENGTH:this._SetJumpStrength(value);break;case GRAVITY:this._SetGravity(value);break;case MAX_FALL_SPEED:this._SetMaxFallSpeed(value);break;case DOUBLE_JUMP:this._SetDoubleJumpEnabled(!!value);
+break;case JUMP_SUSTAIN:this._SetJumpSustain(value/1E3);break;case DEFAULT_CONTROLS:this._SetDefaultControls(!!value);break;case ENABLE:this._SetEnabled(!!value);break}}GetDebuggerProperties(){const prefix="behaviors.platform";return[{title:"$"+this.GetBehaviorType().GetName(),properties:[{name:prefix+".debugger.vector-x",value:this._GetVectorX(),onedit:v=>this._SetVectorX(v)},{name:prefix+".debugger.vector-y",value:this._GetVectorY(),onedit:v=>this._SetVectorY(v)},{name:prefix+".properties.max-speed.name",
+value:this._GetMaxSpeed(),onedit:v=>this._SetMaxSpeed(v)},{name:prefix+".properties.acceleration.name",value:this._GetAcceleration(),onedit:v=>this._SetAcceleration(v)},{name:prefix+".properties.deceleration.name",value:this._GetDeceleration(),onedit:v=>this._SetDeceleration(v)},{name:prefix+".properties.jump-strength.name",value:this._GetJumpStrength(),onedit:v=>this._SetJumpStrength(v)},{name:prefix+".properties.gravity.name",value:this._GetGravity(),onedit:v=>this._SetGravity(v)},{name:prefix+
+".debugger.gravity-angle",value:C3.toDegrees(this._GetGravityAngle()),onedit:v=>this._SetGravityAngle(C3.toRadians(v))},{name:prefix+".properties.max-fall-speed.name",value:this._GetMaxFallSpeed(),onedit:v=>this._SetMaxFallSpeed(v)},{name:prefix+".debugger.animation-mode",value:[prefix+".debugger.anim-"+this._animMode]},{name:prefix+".properties.enabled.name",value:this._IsEnabled(),onedit:v=>this._SetEnabled(v)}]}]}GetScriptInterfaceClass(){return self.IPlatformBehaviorInstance}};const map=new WeakMap;
+const SIMULATE_CONTROL_MAP=new Map([["left",0],["right",1],["jump",2]]);self.IPlatformBehaviorInstance=class IPlatformBehaviorInstance extends IBehaviorInstance{constructor(){super();map.set(this,IBehaviorInstance._GetInitInst().GetSdkInstance())}fallThrough(){map.get(this)._FallThroughJumpThru()}resetDoubleJump(d){map.get(this)._ResetDoubleJump(!!d)}simulateControl(ctrl){const index=SIMULATE_CONTROL_MAP.get(ctrl);if(typeof index!=="number")throw new Error("invalid control");map.get(this)._SimulateControl(index)}get speed(){return map.get(this)._GetSpeed()}get maxSpeed(){return map.get(this)._GetMaxSpeed()}set maxSpeed(s){map.get(this)._SetMaxSpeed(s)}get acceleration(){return map.get(this)._GetAcceleration()}set acceleration(a){map.get(this)._SetAcceleration(a)}get deceleration(){return map.get(this)._GetDeceleration()}set deceleration(d){map.get(this)._SetDeceleration(d)}get jumpStrength(){return map.get(this)._GetJumpStrength()}set jumpStrength(js){map.get(this)._SetJumpStrength(js)}get maxFallSpeed(){return map.get(this)._GetMaxFallSpeed()}set maxFallSpeed(mfs){map.get(this)._SetMaxFallSpeed(mfs)}get gravity(){return map.get(this)._GetGravity()}set gravity(g){map.get(this)._SetGravity(g)}get gravityAngle(){return map.get(this)._GetGravityAngle()}set gravityAngle(ga){map.get(this)._SetGravityAngle(ga)}get isDoubleJumpEnabled(){return map.get(this)._IsDoubleJumpEnabled()}set isDoubleJumpEnabled(e){map.get(this)._SetDoubleJumpEnabled(!!e)}get jumpSustain(){return map.get(this)._GetJumpSustain()}set jumpSustain(js){map.get(this)._SetJumpSustain(js)}get ceilingCollisionMode(){const ccm=
+map.get(this)._GetCeilingCollisionMode();return ccm===0?"stop":"preserve-momentum"}set ceilingCollisionMode(ccm){const bi=map.get(this);if(ccm==="stop")bi._SetCeilingCollisionMode(0);else if(ccm==="preserve-momentum")bi._SetCeilingCollisionMode(1);else throw new Error("invalid mode");}get isOnFloor(){return map.get(this)._CheckIfStandingOnFloor()}isByWall(side){const bi=map.get(this);if(side==="left")return bi._IsByWall(0);else if(side==="right")return bi._IsByWall(1);else throw new Error("invalid side");
+}get isJumping(){return map.get(this)._IsJumping()}get isFalling(){return map.get(this)._IsFalling()}get vectorX(){return map.get(this)._GetVectorX()}set vectorX(x){map.get(this)._SetVectorX(x)}get vectorY(){return map.get(this)._GetVectorY()}set vectorY(y){map.get(this)._SetVectorY(y)}get isDefaultControls(){return map.get(this)._IsDefaultControls()}set isDefaultControls(d){map.get(this)._SetDefaultControls(!!d)}get isIgnoringInput(){return map.get(this)._IsIgnoreInput()}set isIgnoringInput(e){map.get(this)._SetIgnoreInput(!!e)}get isEnabled(){return map.get(this)._IsEnabled()}set isEnabled(e){map.get(this)._SetEnabled(!!e)}}};
+
+
+'use strict';{const C3=self.C3;C3.Behaviors.Platform.Cnds={IsMoving(){return this._GetVectorX()!==0||this._GetVectorY()!==0},CompareSpeed(cmp,s){return C3.compare(this._GetSpeed(),cmp,s)},IsOnFloor(){return this._CheckIfStandingOnFloor()},IsByWall(side){return this._IsByWall(side)},IsJumping(){return this._IsJumping()},IsFalling(){return this._IsFalling()},IsDoubleJumpEnabled(){return this._IsDoubleJumpEnabled()},OnJump(){return true},OnFall(){return true},OnStop(){return true},OnMove(){return true},
+OnLand(){return true},IsEnabled(){return this._IsEnabled()}}};
+
+
+'use strict';{const C3=self.C3;C3.Behaviors.Platform.Acts={SetMaxSpeed(ms){this._SetMaxSpeed(ms)},SetAcceleration(acc){this._SetAcceleration(acc)},SetDeceleration(dec){this._SetDeceleration(dec)},SetJumpStrength(js){this._SetJumpStrength(js)},SetMaxFallSpeed(mfs){this._SetMaxFallSpeed(mfs)},SetGravity(grav){this._SetGravity(grav)},SimulateControl(ctrl){this._SimulateControl(ctrl)},SetIgnoreInput(i){this._SetIgnoreInput(!!i)},SetVectorX(x){this._SetVectorX(x)},SetVectorY(y){this._SetVectorY(y)},SetGravityAngle(a){this._SetGravityAngle(C3.toRadians(a))},
+SetEnabled(en){this._SetEnabled(en!==0)},FallThrough(){this._FallThroughJumpThru()},SetDoubleJumpEnabled(e){this._SetDoubleJumpEnabled(e!==0)},SetJumpSustain(s){this._SetJumpSustain(s/1E3)},SetCeilingCollision(m){this._SetCeilingCollisionMode(m)},SetDefaultControls(d){this._SetDefaultControls(d)},ResetDoubleJump(d){this._ResetDoubleJump(d)}}};
+
+
+'use strict';{const C3=self.C3;C3.Behaviors.Platform.Exps={Speed(){return this._GetSpeed()},MaxSpeed(){return this._GetMaxSpeed()},Acceleration(){return this._GetAcceleration()},Deceleration(){return this._GetDeceleration()},JumpStrength(){return this._GetJumpStrength()},Gravity(){return this._GetGravity()},GravityAngle(){return C3.toDegrees(this._GetGravityAngle())},MaxFallSpeed(){return this._GetMaxFallSpeed()},MovingAngle(){return C3.toDegrees(this._GetMovingAngle())},VectorX(){return this._GetVectorX()},
+VectorY(){return this._GetVectorY()},JumpSustain(){return this._GetJumpSustain()*1E3}}};
+
+
+'use strict';{const C3=self.C3;C3.Behaviors.destroy=class DestroyOutsideLayoutBehavior extends C3.SDKBehaviorBase{constructor(opts){super(opts)}Release(){super.Release()}}};
+
+
+'use strict';{const C3=self.C3;C3.Behaviors.destroy.Type=class DestroyOutsideLayoutType extends C3.SDKBehaviorTypeBase{constructor(behaviorType){super(behaviorType)}Release(){super.Release()}OnCreate(){}}};
+
+
+'use strict';{const C3=self.C3;C3.Behaviors.destroy.Instance=class DestroyOutsideLayoutInstance extends C3.SDKBehaviorInstanceBase{constructor(behInst,properties){super(behInst);this._StartTicking()}Release(){super.Release()}Tick(){const wi=this._inst.GetWorldInfo();const bbox=wi.GetBoundingBox();const layout=wi.GetLayout();if(bbox.getRight()<0||bbox.getBottom()<0||bbox.getLeft()>layout.GetWidth()||bbox.getTop()>layout.GetHeight())this._runtime.DestroyInstance(this._inst)}}};
+
+
+'use strict';{const C3=self.C3;C3.Behaviors.destroy.Cnds={}};
+
+
+'use strict';{const C3=self.C3;C3.Behaviors.destroy.Acts={}};
+
+
+'use strict';{const C3=self.C3;C3.Behaviors.destroy.Exps={}};
+
+
+'use strict';{const C3=self.C3;C3.Behaviors.Orbit=class OrbitBehavior extends C3.SDKBehaviorBase{constructor(opts){super(opts)}Release(){super.Release()}}};
+
+
+'use strict';{const C3=self.C3;C3.Behaviors.Orbit.Type=class OrbitType extends C3.SDKBehaviorTypeBase{constructor(objectClass){super(objectClass)}Release(){super.Release()}OnCreate(){}}};
+
+
+'use strict';{const C3=self.C3;const SPEED=0;const ACCELERATION=1;const MINOR_AXIS=2;const MAJOR_AXIS=3;const OFFSET_ANGLE=4;const MATCH_ROTATION=5;const ENABLE=6;C3.Behaviors.Orbit.Instance=class OrbitInstance extends C3.SDKBehaviorInstanceBase{constructor(inst,properties){super(inst);this._speed=0;this._acceleration=0;this._isEnabled=true;this._minorAxis=0;this._majorAxis=0;this._offsetAngle=0;this._matchRotation=false;this._targetX=0;this._targetY=0;this._targetObject=null;this._targetUid=-1;this._rotation=
+0;this._totalRotation=0;this._totalAbsoluteRotation=0;if(properties){this._speed=C3.toRadians(properties[SPEED]);this._acceleration=C3.toRadians(properties[ACCELERATION]);this._isEnabled=properties[ENABLE];this._minorAxis=properties[MINOR_AXIS];this._majorAxis=properties[MAJOR_AXIS];this._offsetAngle=C3.toRadians(properties[OFFSET_ANGLE]);this._matchRotation=properties[MATCH_ROTATION]}const rt=this._runtime.Dispatcher();this._disposables=new C3.CompositeDisposable(C3.Disposable.From(rt,"instancedestroy",
+e=>this._OnInstanceDestroyed(e.instance)),C3.Disposable.From(rt,"afterload",e=>this._OnAfterLoad()));this._SetEnabled(this._isEnabled);const wi=this._inst.GetWorldInfo();this._targetX=wi.GetX();this._targetY=wi.GetY();this._rotation=wi.GetAngle()}Release(){this._targetObject=null;super.Release()}SaveToJson(){return{"s":this._speed,"a":this._acceleration,"r":this._rotation,"e":this._isEnabled,"a1":this._majorAxis,"a2":this._minorAxis,"oa":this._offsetAngle,"mr":this._matchRotation,"tx":this._targetX,
+"ty":this._targetY,"tuid":this._targetObject?this._targetObject.GetUID():-1}}LoadFromJson(o){this._speed=o["s"];this._acceleration=o["a"];this._rotation=o["r"];this._majorAxis=o["a1"];this._minorAxis=o["a2"];this._offsetAngle=o["oa"];this._matchRotation=o["mr"];this._targetX=o["tx"];this._targetY=o["ty"];this._targetUid=o["tuid"];this._SetEnabled(o["e"])}_OnAfterLoad(){if(this._targetUid===-1)this._targetObject=null;else{this._targetObject=this._runtime.GetInstanceByUID(this._targetUid);this._targetUid=
+-1}}_OnInstanceDestroyed(inst){if(this._targetObject===inst)this._targetObject=null}_Initialise(){if(!this._shouldInitialise)return;const wi=this._inst.GetWorldInfo();this._targetX=wi.GetX();this._targetY=wi.GetY();this._rotation=wi.GetAngle();this._shouldInitialise=false}_UpdateTarget(){if(!this._targetObject)return;const wi=this._targetObject.GetWorldInfo();this._targetX=wi.GetX();this._targetY=wi.GetY()}_ShouldTickLate(){return!!this._targetObject}Tick(){this._TickInternal()}Tick2(){this._TickInternal()}_TickInternal(){if(!this._isEnabled)return;
+const dt=this._runtime.GetDt(this._inst);if(dt===0)return;if(this._acceleration!==0)this._speed+=this._acceleration*dt;const wi=this._inst.GetWorldInfo();const delta=this._speed*dt;this._rotation=C3.clampAngle(this._rotation+delta);this._totalRotation+=delta;this._totalAbsoluteRotation+=Math.abs(delta);const x=this._minorAxis*Math.cos(this._rotation);const y=this._majorAxis*Math.sin(this._rotation);const cos=Math.cos(this._offsetAngle);const sin=Math.sin(this._offsetAngle);this._UpdateTarget();wi.SetXY(this._targetX+
+(x*cos-y*sin),this._targetY+(x*sin+y*cos));if(this._matchRotation)wi.SetAngle(this._rotation+this._offsetAngle+.5*Math.PI);wi.SetBboxChanged()}GetPropertyValueByIndex(index){switch(index){case SPEED:return C3.toDegrees(this._speed);case ACCELERATION:return C3.toDegrees(this._acceleration);case ENABLE:return this._isEnabled;case MINOR_AXIS:return this._minorAxis;case MAJOR_AXIS:return this._majorAxis;case OFFSET_ANGLE:return this._offsetAngle;case MATCH_ROTATION:return this._matchRotation}}SetPropertyValueByIndex(index,
+value){switch(index){case SPEED:this._speed=C3.toRadians(value);break;case ACCELERATION:this._acceleration=C3.toRadians(value);break;case ENABLE:this._SetEnabled(value);break;case MINOR_AXIS:this._minorAxis=value;break;case MAJOR_AXIS:this._majorAxis=value;break;case OFFSET_ANGLE:this._offsetAngle=value;break;case MATCH_ROTATION:this._matchRotation=value;break}}_SetEnabled(e){this._isEnabled=!!e;if(this._ShouldTickLate())if(this._isEnabled)this._StartTicking2();else this._StopTicking2();else if(this._isEnabled)this._StartTicking();
+else this._StopTicking()}GetDebuggerProperties(){const prefix="behaviors.orbit";return[{title:"$"+this.GetBehaviorType().GetName(),properties:[{name:prefix+".debugger.rotation",value:C3.toDegrees(this._rotation)},{name:prefix+".debugger.total-rotation",value:C3.toDegrees(this._totalRotation)},{name:prefix+".debugger.total-absolute-rotation",value:C3.toDegrees(this._totalAbsoluteRotation)},{name:prefix+".properties.speed.name",value:C3.toDegrees(this._speed),onedit:v=>this._speed=C3.toRadians(v)},
+{name:prefix+".properties.acceleration.name",value:C3.toDegrees(this._acceleration),onedit:v=>this._acceleration=C3.toRadians(v)},{name:prefix+".properties.primary-axis.name",value:this._majorAxis,onedit:v=>this._majorAxis=v},{name:prefix+".properties.secondary-axis.name",value:this._minorAxis,onedit:v=>this._minorAxis=v},{name:prefix+".properties.offset-angle.name",value:C3.toDegrees(this._offsetAngle),onedit:v=>this._offsetAngle=C3.toRadians(v)},{name:prefix+".properties.match-rotation.name",value:this._matchRotation,
+onedit:v=>this._matchRotation=!!v},{name:prefix+".properties.enabled.name",value:this._isEnabled,onedit:v=>this._SetEnabled(v)}]}]}}};
+
+
+'use strict';{const C3=self.C3;C3.Behaviors.Orbit.Cnds={IsEnabled(){return this._isEnabled}}};
+
+
+'use strict';{const C3=self.C3;C3.Behaviors.Orbit.Acts={SetSpeed(s){this._speed=C3.toRadians(s)},SetTarget(x,y){this._targetObject=null;this._targetX=x;this._targetY=y},SetRotation(a){this._rotation=C3.toRadians(a)},SetOffsetAngle(a){this._offsetAngle=C3.toRadians(a)},SetRadius(primary,secondary){this._minorAxis=primary;this._majorAxis=secondary},SetMatchRotation(b){this._matchRotation=!!b},Pin(objectClass){if(!objectClass)return;const otherInst=objectClass.GetFirstPicked(this._inst);if(!otherInst)return;
+if(!otherInst.GetWorldInfo())return;const isEnabled=this._isEnabled;if(isEnabled)this._SetEnabled(false);this._targetObject=otherInst;if(isEnabled)this._SetEnabled(true)},Unpin(){const isEnabled=this._isEnabled;if(isEnabled)this._SetEnabled(false);this._targetObject=null;if(isEnabled)this._SetEnabled(true)},SetAcceleration(a){this._acceleration=C3.toRadians(a)},SetEnabled(e){this._SetEnabled(e)},ResetTotalRotation(){this._totalRotation=0;this._totalAbsoluteRotation=0}}};
+
+
+'use strict';{const C3=self.C3;C3.Behaviors.Orbit.Exps={Speed(){return C3.toDegrees(this._speed)},Acceleration(){return C3.toDegrees(this._acceleration)},PrimaryRadius(){return this._majorAxis},SecondaryRadius(){return this._minorAxis},OffsetAngle(){return C3.toDegrees(this._offsetAngle)},Rotation(){return C3.toDegrees(this._rotation)},TotalRotation(){return C3.toDegrees(this._totalRotation)},TotalAbsoluteRotation(){return C3.toDegrees(this._totalAbsoluteRotation)},TargetX(){return this._targetX},
+TargetY(){return this._targetY},DistanceToTarget(){const x=this._minorAxis*Math.cos(this._rotation);const y=this._majorAxis*Math.sin(this._rotation);return Math.sqrt(x**2+y**2)}}};
+
+
 "use strict"
 {
 	const C3 = self.C3;
@@ -5975,6 +6092,9 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		C3.Plugins.sliderbar,
 		C3.Plugins.video,
 		C3.Plugins.PlatformInfo,
+		C3.Behaviors.Platform,
+		C3.Behaviors.destroy,
+		C3.Behaviors.Orbit,
 		C3.Plugins.System.Cnds.OnLayoutStart,
 		C3.Plugins.Sparsha_FirebaseAuth.Acts.SignOut,
 		C3.Plugins.Sprite.Acts.SetAnimFrame,
@@ -6073,7 +6193,12 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		C3.Plugins.System.Acts.SetLayerVisible,
 		C3.Plugins.System.Acts.ToggleBoolVar,
 		C3.Plugins.TextBox.Acts.SetEnabled,
-		C3.Plugins.System.Exps.uppercase
+		C3.Plugins.System.Exps.uppercase,
+		C3.Plugins.System.Cnds.Every,
+		C3.Plugins.Sprite.Cnds.OnCreated,
+		C3.Plugins.Sprite.Acts.Destroy,
+		C3.Plugins.Sprite.Acts.SetX,
+		C3.Plugins.System.Exps.random
 		];
 	};
 	self.C3_JsPropNameTable = [
@@ -6509,6 +6634,25 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		{PlatformInfo: 0},
 		{InstructionText: 0},
 		{NextLevel: 0},
+		{Platform: 0},
+		{DestroyOutsideLayout: 0},
+		{abstract1: 0},
+		{Orbit: 0},
+		{abstract2: 0},
+		{abstract3: 0},
+		{abstract4: 0},
+		{abstract5: 0},
+		{abstract6: 0},
+		{abstract7: 0},
+		{abstract8: 0},
+		{abstract9: 0},
+		{abstract10: 0},
+		{abstract11: 0},
+		{abstract12: 0},
+		{abstract13: 0},
+		{abstract14: 0},
+		{abstract15: 0},
+		{abstract16: 0},
 		{index: 0},
 		{photoIndex: 0},
 		{Player_Nickname: 0},
@@ -6955,7 +7099,8 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const f1 = p._GetNode(1).GetBoundMethod();
-			return () => (f0(f1("st_coins")) + 2);
+			const v2 = p._GetNode(2).GetVar();
+			return () => (f0(f1("st_coins")) + v2.GetValue());
 		},
 		() => "https://e-limu.org/all-products/",
 		() => "Maths Ninja",
@@ -7066,7 +7211,43 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			return () => (n0.ExpObject() + v1.GetValue());
 		},
 		() => "pop-up",
-		() => "Control"
+		() => "Control",
+		() => 1135,
+		() => 548,
+		() => 64,
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0(970, 1300);
+		},
+		() => 80,
+		() => 315,
+		() => 570,
+		() => 128,
+		() => 209,
+		() => 280,
+		() => 213,
+		() => 177,
+		() => 3000,
+		() => 159,
+		() => 152,
+		() => 256,
+		() => 112,
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0(400, 1260);
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0(140, 600);
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0((-150), 150);
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0((-200), (-500));
+		}
 	];
 }
 
