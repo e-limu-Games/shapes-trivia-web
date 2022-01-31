@@ -1,7 +1,7 @@
 {
-	"name": "Shapes_Trivia_pc",
-	"short_name": "Shapes_Trivia_pc",
-	"description": "",
+	"name": "Shapes Trivia",
+	"short_name": "Shapes Trivia",
+	"description": "A learning game for shapes identification and matching",
 	"start_url": "index.html",
 	"display": "fullscreen",
 	"orientation": "landscape",
