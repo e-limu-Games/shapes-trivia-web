@@ -2788,6 +2788,27 @@ SetWrapping(w){this._SetWrapByWord(w===0)}}};
 'use strict';{const C3=self.C3;C3.Plugins.Text.Exps={Text(){return this._text},PlainText(){if(this._enableBBcode)return C3.BBString.StripAnyTags(this._text);else return this._text},FaceName(){return this._faceName},FaceSize(){return this._ptSize},TextWidth(){this._UpdateTextSize();return this._rendererText.GetTextWidth()},TextHeight(){this._UpdateTextSize();return this._rendererText.GetTextHeight()},LineHeight(){return this._lineHeightOffset}}};
 
 
+'use strict';{const C3=self.C3;const DOM_COMPONENT_ID="iframe";C3.Plugins.iframe=class IframePlugin extends C3.SDKDOMPluginBase{constructor(opts){super(opts,DOM_COMPONENT_ID)}Release(){super.Release()}}};
+
+
+'use strict';{const C3=self.C3;C3.Plugins.iframe.Type=class IframeType extends C3.SDKTypeBase{constructor(objectClass){super(objectClass)}Release(){super.Release()}OnCreate(){}}};
+
+
+'use strict';{const C3=self.C3;const DOM_COMPONENT_ID="iframe";C3.Plugins.iframe.Instance=class IframeInstance extends C3.SDKDOMInstanceBase{constructor(inst,properties){super(inst,DOM_COMPONENT_ID);this._url="";let initialHtmlStr="";this._id="";this._allowAttrib="";this._enableSandbox=false;this._sandboxAttrib="";if(properties){this._url=properties[0];initialHtmlStr=properties[1];this.GetWorldInfo().SetVisible(properties[2]);this._id=properties[3];this._allowAttrib=properties[4];this._enableSandbox=
+properties[5];this._sandboxAttrib=properties[6]}this.CreateElement({"url":"","html":initialHtmlStr,"id":this._id,"allow":this._allowAttrib,"enableSandbox":this._enableSandbox,"sandbox":this._sandboxAttrib});if(this._url)this._runtime.AddCreatePromise((async()=>{const urlToLoad=await this.GetUrl();await this.PostToDOMElementAsync("navigate-url",{"url":urlToLoad})})())}Release(){super.Release()}GetElementState(){return{}}async GetUrl(url){return await this._runtime.GetAssetManager().GetProjectFileUrl(url||
+this._url)}Draw(renderer){}SaveToJson(){return{"url":this._url,"id":this._id}}LoadFromJson(o){this._url=o["url"];this._id=o["id"];this.UpdateElementState()}GetDebuggerProperties(){const Acts=C3.Plugins.iframe.Acts;const prefix="plugins.iframe";return[{title:prefix+".name",properties:[{name:prefix+".properties.url.name",value:this._url,onedit:v=>this.CallAction(Acts.NavigateURL,v)}]}]}GetScriptInterfaceClass(){return self.IIframeInstance}};const map=new WeakMap;self.IIframeInstance=class IIframeInstance extends self.IDOMInstance{constructor(){super();
+map.set(this,self.IInstance._GetInitInst().GetSdkInstance())}}};
+
+
+'use strict';{const C3=self.C3;C3.Plugins.iframe.Cnds={}};
+
+
+'use strict';{const C3=self.C3;C3.Plugins.iframe.Acts={async NavigateURL(url){const urlToLoad=await this.GetUrl(url);this.PostToDOMElement("navigate-url",{"url":urlToLoad})},DisplayHTMLString(html){this.PostToDOMElement("display-html",{"html":html})}}};
+
+
+'use strict';{const C3=self.C3;C3.Plugins.iframe.Exps={}};
+
+
 'use strict';{const C3=self.C3;C3.Plugins.Touch=class TouchPlugin extends C3.SDKPluginBase{constructor(opts){super(opts)}Release(){super.Release()}}};
 
 
@@ -6075,6 +6096,7 @@ TargetY(){return this._targetY},DistanceToTarget(){const x=this._minorAxis*Math.
 		C3.Behaviors.lunarray_LiteTween,
 		C3.Plugins.Audio,
 		C3.Plugins.Text,
+		C3.Plugins.iframe,
 		C3.Behaviors.scrollto,
 		C3.Behaviors.Pin,
 		C3.Plugins.Touch,
@@ -6097,6 +6119,7 @@ TargetY(){return this._targetY},DistanceToTarget(){const x=this._minorAxis*Math.
 		C3.Behaviors.Orbit,
 		C3.Plugins.System.Cnds.OnLayoutStart,
 		C3.Plugins.Sparsha_FirebaseAuth.Acts.SignOut,
+		C3.Plugins.System.Acts.SetBoolVar,
 		C3.Plugins.Sprite.Acts.SetAnimFrame,
 		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Acts.SimpleReadData,
 		C3.Plugins.System.Acts.WaitForPreviousActions,
@@ -6114,7 +6137,6 @@ TargetY(){return this._targetY},DistanceToTarget(){const x=this._minorAxis*Math.
 		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Cnds.OnSimpleRead,
 		C3.Plugins.System.Acts.SetVar,
 		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Exps.userData,
-		C3.Plugins.System.Acts.SetBoolVar,
 		C3.Plugins.Sprite.Acts.SetVisible,
 		C3.Plugins.TextBox.Acts.SetVisible,
 		C3.Plugins.Text.Acts.SetVisible,
@@ -6198,7 +6220,18 @@ TargetY(){return this._targetY},DistanceToTarget(){const x=this._minorAxis*Math.
 		C3.Plugins.Sprite.Cnds.OnCreated,
 		C3.Plugins.Sprite.Acts.Destroy,
 		C3.Plugins.Sprite.Acts.SetX,
-		C3.Plugins.System.Exps.random
+		C3.Plugins.System.Exps.random,
+		C3.ScriptsInEvents.Inappfeedback_Event1_Act1,
+		C3.Plugins.LocalStorage.Acts.GetItem,
+		C3.Plugins.System.Exps.layoutname,
+		C3.Plugins.LocalStorage.Exps.ItemValue,
+		C3.Plugins.LocalStorage.Cnds.OnItemGet,
+		C3.Plugins.System.Exps.layoutwidth,
+		C3.Plugins.System.Exps.layoutheight,
+		C3.Plugins.iframe.Acts.SetPos,
+		C3.Plugins.iframe.Acts.NavigateURL,
+		C3.Plugins.LocalStorage.Acts.SetItem,
+		C3.Plugins.iframe.Acts.Destroy
 		];
 	};
 	self.C3_JsPropNameTable = [
@@ -6451,6 +6484,8 @@ TargetY(){return this._targetY},DistanceToTarget(){const x=this._minorAxis*Math.
 		{underscore_key: 0},
 		{KeypadInputNameText: 0},
 		{KeypadInputText: 0},
+		{feedback_iframe: 0},
+		{help_btn: 0},
 		{ScrollTo: 0},
 		{Pin: 0},
 		{dd: 0},
@@ -6657,6 +6692,7 @@ TargetY(){return this._targetY},DistanceToTarget(){const x=this._minorAxis*Math.
 		{photoIndex: 0},
 		{Player_Nickname: 0},
 		{playeryear: 0},
+		{Logged: 0},
 		{UserName: 0},
 		{FullName: 0},
 		{NickName: 0},
@@ -6687,7 +6723,13 @@ TargetY(){return this._targetY},DistanceToTarget(){const x=this._minorAxis*Math.
 		{InputCharacter: 0},
 		{CapsLock: 0},
 		{char: 0},
-		{input_name: 0}
+		{input_name: 0},
+		{AppId: 0},
+		{SurveyUrl: 0},
+		{FeedbackAction: 0},
+		{UserLastFeedbackId: 0},
+		{FeedbackId: 0},
+		{InFeedback: 0}
 	];
 }
 
@@ -7250,6 +7292,24 @@ TargetY(){return this._targetY},DistanceToTarget(){const x=this._minorAxis*Math.
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0((-200), (-500));
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => ("tm_feedbackId_" + f0());
+		},
+		() => "femi@e-limu.org",
+		() => "_CLOSE_",
+		() => "ShapeIdentity",
+		() => -2,
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const f1 = p._GetNode(1).GetBoundMethod();
+			return () => f0(f1());
+		},
+		() => "_DONE_",
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => (((("https://try-product-survey.netlify.com/" + "?appId=") + "-Muk25p-B3tCEVZWlbD5") + "&userId=") + v0.GetValue());
 		}
 	];
 }
@@ -7314,6 +7374,13 @@ TargetY(){return this._targetY},DistanceToTarget(){const x=this._minorAxis*Math.
 		async Taskmenu_Event1_Act3(runtime, localVars)
 		{
 			shuffleShapes(runtime);
+		},
+
+		async Inappfeedback_Event1_Act1(runtime, localVars)
+		{
+			window.onmessage = function(event) {
+				runtime.globalVars.FeedbackAction = event.data;
+			}
 		}
 
 	};
