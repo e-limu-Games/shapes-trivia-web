@@ -6167,6 +6167,7 @@ TargetY(){return this._targetY},DistanceToTarget(){const x=this._minorAxis*Math.
 		C3.Plugins.Sparsha_FirebaseAuth.Exps.errorMessage,
 		C3.Plugins.Sparsha_FirebaseAuth.Exps.errorActionCode,
 		C3.Plugins.Sparsha_FirebaseAuth.Exps.errorCode,
+		C3.Plugins.Sparsha_FirebaseSDK.Acts.LoadSD,
 		C3.ScriptsInEvents.Gameplay_Event1_Act3,
 		C3.ScriptsInEvents.Gameplay_Event8_Act3,
 		C3.ScriptsInEvents.Gameplay_Event9_Act3,
@@ -6174,7 +6175,6 @@ TargetY(){return this._targetY},DistanceToTarget(){const x=this._minorAxis*Math.
 		C3.ScriptsInEvents.Gameplay_Event11_Act3,
 		C3.ScriptsInEvents.Gameplay_Event12_Act3,
 		C3.ScriptsInEvents.Gameplay_Event13_Act3,
-		C3.Plugins.Sparsha_FirebaseSDK.Acts.LoadSD,
 		C3.Plugins.Browser.Acts.RequestFullScreen,
 		C3.Plugins.Browser.Acts.LockOrientation,
 		C3.Plugins.Browser.Acts.LoadStyleSheet,
@@ -7062,13 +7062,17 @@ TargetY(){return this._targetY},DistanceToTarget(){const x=this._minorAxis*Math.
 		() => "topcoin",
 		() => 82,
 		() => 81,
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => and("Score: ", f0("st_score"));
+		},
 		() => 176,
 		() => 400,
 		() => 500,
 		() => 1.5,
 		() => "Shape Question",
 		() => 200,
-		() => "Spape Options",
+		() => "Shape Options",
 		() => "Shape audio",
 		() => "Triangle - 1",
 		() => "Circle - 2",
@@ -7102,11 +7106,6 @@ TargetY(){return this._targetY},DistanceToTarget(){const x=this._minorAxis*Math.
 		() => 225,
 		() => 800,
 		p => {
-			const v0 = p._GetNode(0).GetVar();
-			const v1 = p._GetNode(1).GetVar();
-			return () => (v0.GetValue() + v1.GetValue());
-		},
-		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const f1 = p._GetNode(1).GetBoundMethod();
 			const v2 = p._GetNode(2).GetVar();
@@ -7136,14 +7135,9 @@ TargetY(){return this._targetY},DistanceToTarget(){const x=this._minorAxis*Math.
 		() => "back",
 		() => "Next Question",
 		p => {
-			const v0 = p._GetNode(0).GetVar();
-			return () => (v0.GetValue() + 2);
-		},
-		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const f1 = p._GetNode(1).GetBoundMethod();
-			const v2 = p._GetNode(2).GetVar();
-			return () => (f0(f1("st_coins")) + Math.round((v2.GetValue() / 2)));
+			return () => (f0(f1("st_coins")) + 2);
 		},
 		() => "https://e-limu.org/all-products/",
 		() => "Maths Ninja",
