@@ -4685,9 +4685,6 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		C3.Plugins.Sprite.Acts.SetSize,
 		C3.Behaviors.Tween.Acts.TweenOneProperty,
 		C3.ScriptsInEvents.Gameplay_es_Event21,
-		C3.Plugins.Browser.Acts.RequestFullScreen,
-		C3.Plugins.Browser.Acts.LockOrientation,
-		C3.Plugins.Browser.Acts.LoadStyleSheet,
 		C3.Plugins.System.Cnds.EveryTick,
 		C3.Plugins.Sprite.Acts.SetPos,
 		C3.Plugins.Sprite.Exps.X,
@@ -5309,7 +5306,6 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		() => 150,
 		() => 195,
 		() => 90,
-		() => "customstyle.css",
 		p => {
 			const n0 = p._GetNode(0);
 			return () => (n0.ExpObject() + 173);
