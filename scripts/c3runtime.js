@@ -5522,8 +5522,6 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			const v0 = p._GetNode(0).GetVar();
 			return () => and(((("https://iridescent-syrniki-fd6560.netlify.app" + "?appId=") + "-Muk25p-B3tCEVZWlbD5") + "&userId="), v0.GetValue());
 		},
-		() => "shapes-trivia",
-		() => "sign_in",
 		() => "Session Point Logic",
 		() => "ST_SessionPoints"
 	];
@@ -5576,7 +5574,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			{
 			    "action": "game_loaded",
 				"payload": {
-					"orientation": "landscape"
+					//"orientation": "landscape"
 				}
 			},"*");
 		},
