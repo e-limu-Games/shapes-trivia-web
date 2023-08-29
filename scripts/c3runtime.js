@@ -6894,7 +6894,6 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			const v0 = p._GetNode(0).GetVar();
 			return () => (v0.GetValue() + 1);
 		},
-		() => "ST_Score",
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			const v1 = p._GetNode(1).GetVar();
@@ -6929,7 +6928,6 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			const v0 = p._GetNode(0).GetVar();
 			return () => (v0.GetValue() + 2);
 		},
-		() => "ST_Coins",
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			const v1 = p._GetNode(1).GetVar();
@@ -7111,8 +7109,8 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 					
 					else if(obj.action === "retrieve_user_data")
 					{
-						runtime.globalVars.ShapeIdentityScore = obj.payload.ST_Score;
-						runtime.globalVars.ShapeIdentityCoins = obj.payload.ST_Coins;
+						runtime.globalVars.ShapeIdentityScore = obj.payload.st_score;
+						runtime.globalVars.ShapeIdentityCoins = obj.payload.st_coins;
 					}
 				}
 			})
