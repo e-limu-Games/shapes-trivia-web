@@ -6931,9 +6931,9 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		},
 		() => "ST_Coins",
 		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
+			const v0 = p._GetNode(0).GetVar();
 			const v1 = p._GetNode(1).GetVar();
-			return () => (f0("ST_Coins") + Math.round((v1.GetValue() / 2)));
+			return () => (v0.GetValue() + Math.round((v1.GetValue() / 2)));
 		},
 		p => {
 			const v0 = p._GetNode(0).GetVar();
