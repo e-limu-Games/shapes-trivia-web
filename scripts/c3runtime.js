@@ -7111,7 +7111,20 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 					{
 						runtime.globalVars.ShapeIdentityScore = obj.payload.st_score;
 						runtime.globalVars.ShapeIdentityCoins = obj.payload.st_coins;
+						
+						
+					if (typeof obj.payload.st_score === 'undefined'){
+					runtime.globalVars.ShapeIdentityScore = 0;
 					}
+					
+						if (typeof obj.payload.st_coins === 'undefined'){
+					runtime.globalVars.ShapeIdentityCoins = 0;
+					}
+						
+					}
+					
+					
+					
 				}
 			})
 		},
@@ -7190,7 +7203,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			{
 			    "action": "retrieve_user_data",
 				"payload": {
-					"app_key": "cleanliness"
+					"app_key": "shapes-trivia"
 				}
 			},"*");
 			//alert("Posted")
