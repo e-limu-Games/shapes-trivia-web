@@ -6090,20 +6090,12 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		C3.Plugins.Sprite.Acts.SetSize,
 		C3.Behaviors.Tween.Acts.TweenOneProperty,
 		C3.ScriptsInEvents.Gameplay_es_Event21,
-		C3.Plugins.Browser.Acts.RequestFullScreen,
-		C3.Plugins.Browser.Acts.LockOrientation,
-		C3.Plugins.Browser.Acts.LoadStyleSheet,
 		C3.Plugins.System.Cnds.EveryTick,
-		C3.Plugins.Sparsha_FirebaseAuth.Exps.userID,
 		C3.Plugins.Sprite.Acts.SetPos,
 		C3.Plugins.Sprite.Exps.X,
 		C3.Plugins.Sprite.Exps.Y,
 		C3.Plugins.Text.Acts.SetPos,
 		C3.Plugins.Text.Acts.SetText,
-		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Cnds.OnSimpleTrigger,
-		C3.Plugins.System.Exps.int,
-		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Exps.userData,
-		C3.Plugins.Sprite.Acts.SetAnimFrame,
 		C3.Plugins.Text.Acts.SetFontColor,
 		C3.Plugins.Sprite.Cnds.CompareX,
 		C3.ScriptsInEvents.Shapeidentity_es_Event2_Act1,
@@ -6112,6 +6104,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		C3.Plugins.Sprite.Acts.SetVisible,
 		C3.Plugins.System.Cnds.For,
 		C3.Plugins.System.Cnds.PickByEvaluate,
+		C3.Plugins.Sprite.Acts.SetAnimFrame,
 		C3.Plugins.System.Cnds.CompareVar,
 		C3.Plugins.System.Cnds.CompareBoolVar,
 		C3.Plugins.Sprite.Acts.Spawn,
@@ -6119,7 +6112,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		C3.Plugins.Sprite.Acts.SetX,
 		C3.Plugins.Text.Acts.SetVisible,
 		C3.ScriptsInEvents.Shapeidentity_es_Event310_Act7,
-		C3.ScriptsInEvents.Shapeidentity_es_Event315,
+		C3.Plugins.System.Cnds.Every,
 		C3.Plugins.sliderbar.Acts.SetValue,
 		C3.Plugins.Audio.Cnds.IsTagPlaying,
 		C3.Plugins.Audio.Acts.SetVolume,
@@ -6127,14 +6120,15 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		C3.Plugins.sliderbar.Exps.Value,
 		C3.Plugins.Sprite.Exps.AnimationFrame,
 		C3.Plugins.Sprite.Cnds.CompareFrame,
-		C3.Plugins.System.Cnds.Every,
 		C3.Plugins.Sprite.Cnds.OnCreated,
 		C3.Plugins.Sprite.Acts.Destroy,
 		C3.Plugins.System.Exps.random,
 		C3.ScriptsInEvents.Inappfeedback_es_Event1_Act1,
 		C3.Plugins.LocalStorage.Acts.GetItem,
+		C3.Plugins.Sparsha_FirebaseAuth.Exps.userID,
 		C3.Plugins.System.Cnds.Compare,
 		C3.Plugins.System.Exps.layoutname,
+		C3.Plugins.System.Exps.int,
 		C3.Plugins.LocalStorage.Exps.ItemValue,
 		C3.Plugins.LocalStorage.Cnds.OnItemGet,
 		C3.Plugins.iframe.Acts.NavigateURL,
@@ -6144,14 +6138,17 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		C3.Plugins.LocalStorage.Acts.SetItem,
 		C3.Plugins.iframe.Acts.Destroy,
 		C3.Plugins.System.Cnds.CompareTime,
-		C3.ScriptsInEvents.Functions_es_Event3_Act1,
-		C3.ScriptsInEvents.Functions_es_Event5_Act1,
-		C3.ScriptsInEvents.Functions_es_Event7_Act1,
-		C3.ScriptsInEvents.Functions_es_Event9_Act1,
-		C3.ScriptsInEvents.Functions_es_Event11_Act1,
-		C3.ScriptsInEvents.Functions_es_Event13_Act1,
-		C3.ScriptsInEvents.Functions_es_Event15_Act1,
-		C3.ScriptsInEvents.Functions_es_Event17_Act1
+		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Exps.userData,
+		C3.ScriptsInEvents.Functions_data_es_Event2_Act1,
+		C3.ScriptsInEvents.Functions_data_es_Event4_Act1,
+		C3.ScriptsInEvents.Functions_data_es_Event6_Act1,
+		C3.ScriptsInEvents.Functions_data_es_Event8_Act1,
+		C3.ScriptsInEvents.Functions_data_es_Event10_Act1,
+		C3.ScriptsInEvents.Functions_data_es_Event12_Act1,
+		C3.ScriptsInEvents.Functions_data_es_Event14_Act1,
+		C3.ScriptsInEvents.Functions_data_es_Event16_Act1,
+		C3.ScriptsInEvents.Functions_data_es_Event18_Act1,
+		C3.ScriptsInEvents.Functions_data_es_Event20_Act1
 		];
 	};
 	self.C3_JsPropNameTable = [
@@ -6525,14 +6522,14 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		{UserLastFeedbackId: 0},
 		{FeedbackId: 0},
 		{InFeedback: 0},
-		{UserEmail: 0},
-		{WebAppUrl: 0},
-		{GameAction: 0},
-		{GameKey: 0},
-		{UserFirstname: 0},
-		{UserLastname: 0},
 		{Timer: 0},
 		{HasUpdatedSessionPoints: 0},
+		{GameKey: 0},
+		{GameAction: 0},
+		{UserEmail: 0},
+		{UserFirstname: 0},
+		{UserLastname: 0},
+		{Username: 0},
 		{GameToOpen: 0},
 		{dataKey: 0},
 		{value: 0}
@@ -6731,11 +6728,6 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		() => 150,
 		() => 195,
 		() => 90,
-		() => "customstyle.css",
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0();
-		},
 		p => {
 			const n0 = p._GetNode(0);
 			return () => (n0.ExpObject() + 173);
@@ -6781,47 +6773,12 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			return () => and("Coins: ", v0.GetValue());
 		},
 		() => "Read User Data",
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			const f1 = p._GetNode(1).GetBoundMethod();
-			return () => f0(f1("photonumber"));
-		},
-		() => "playernickname",
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0("playernickname");
-		},
-		() => "playername",
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0("playername");
-		},
-		() => -1023,
-		() => "st_score",
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0("st_score");
-		},
-		() => "st_coins",
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0("st_coins");
-		},
-		() => "ST_RoundCount",
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0("ST_RoundCount");
-		},
-		() => "ST_HighestLevelPlayed",
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0("ST_HighestLevelPlayed");
-		},
 		() => "Profile",
 		() => "profileView",
 		() => 201,
 		() => 411,
 		() => 0.5,
+		() => -1023,
 		() => -308,
 		() => -717750023016447,
 		() => -500,
@@ -6899,6 +6856,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			const v1 = p._GetNode(1).GetVar();
 			return () => (v0.GetValue() + v1.GetValue());
 		},
+		() => "st_score",
 		() => 0.3,
 		() => -1000,
 		() => 1000,
@@ -6913,6 +6871,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		() => 370,
 		() => 603,
 		() => 432,
+		() => "ST_HighestLevelPlayed",
 		() => "Coins",
 		() => "won",
 		() => "wonpos",
@@ -6928,11 +6887,8 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			const v0 = p._GetNode(0).GetVar();
 			return () => (v0.GetValue() + 2);
 		},
-		p => {
-			const v0 = p._GetNode(0).GetVar();
-			const v1 = p._GetNode(1).GetVar();
-			return () => (v0.GetValue() + Math.round((v1.GetValue() / 2)));
-		},
+		() => "st_coins",
+		() => "ST_RoundCount",
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			return () => ((v0.GetValue() % 6) + 1);
@@ -6986,6 +6942,10 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			return () => ("tm_feedbackId_" + f0());
 		},
 		() => "_CLOSE_",
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0();
+		},
 		() => "ShapeIdentity",
 		() => -2,
 		p => {
@@ -7001,7 +6961,11 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		},
 		() => "Session Point Logic",
 		() => "ST_SessionPoints",
-		() => "Interface Functions"
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const f1 = p._GetNode(1).GetBoundMethod();
+			return () => (f0(f1("ST_SessionPoints")) + 1);
+		}
 	];
 }
 
@@ -7068,11 +7032,6 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			shuffleShapes(runtime);
 		},
 
-		async Shapeidentity_es_Event315(runtime, localVars)
-		{
-			
-		},
-
 		async Inappfeedback_es_Event1_Act1(runtime, localVars)
 		{
 			window.onmessage = function(event) {
@@ -7080,56 +7039,55 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			}
 		},
 
-		async Functions_es_Event3_Act1(runtime, localVars)
+		async Functions_data_es_Event2_Act1(runtime, localVars)
 		{
 			window.addEventListener("message", event=>{
 				const obj = event.data;
 				if(obj && obj.action && obj.payload)
 				{
 					if(obj.action === "sign_in")
-					{
+					{	
 						runtime.globalVars.GameAction = obj.action;
-					//alert(runtime.globalVars.GameAction);
-					
-					runtime.globalVars.GameKey = obj.payload.app_key;
-					//alert(runtime.globalVars.GameKey);
-					
-					runtime.globalVars.UserEmail = obj.payload.user.email;
-					//alert(runtime.globalVars.UserEmail);
-					
-					runtime.globalVars.UserFirstname = obj.payload.user.firstName;
-					//alert(runtime.globalVars.UserFirstname);
-					
-					runtime.globalVars.UserLastname = obj.payload.user.lastName;
-					//alert(runtime.globalVars.UserLastname);
-					
-					runtime.globalVars.Username = obj.payload.user.username;
-					//alert(runtime.globalVars.Username);
+						//alert(runtime.globalVars.GameAction);
+						
+						runtime.globalVars.GameKey = obj.payload.app_key;
+						//alert(runtime.globalVars.GameKey);
+			
+						runtime.globalVars.UserEmail = obj.payload.user.email;
+						//alert(runtime.globalVars.UserEmail);
+			
+						runtime.globalVars.UserFirstname = obj.payload.user.firstName;
+						//alert(runtime.globalVars.UserFirstname);
+			
+						runtime.globalVars.UserLastname = obj.payload.user.lastName;
+						//alert(runtime.globalVars.UserLastname);
+			
+						runtime.globalVars.Username = obj.payload.user.username;
+						//alert(runtime.globalVars.Username);
 					}
-					
 					else if(obj.action === "retrieve_user_data")
 					{
+						runtime.globalVars.PhotoNumber = obj.payload.ST_photonumber;
+						runtime.globalVars.Playername = obj.payload.playername;
+						runtime.globalVars.PlayerNickname = obj.payload.playernickname;
 						runtime.globalVars.ShapeIdentityScore = obj.payload.st_score;
 						runtime.globalVars.ShapeIdentityCoins = obj.payload.st_coins;
-						
-						
-					if (typeof obj.payload.st_score === 'undefined'){
+						runtime.globalVars.ST_HighestLevelPlayed = obj.payload.ST_HighestLevelPlayed;
+								if (typeof obj.payload.st_score === 'undefined'){
 					runtime.globalVars.ShapeIdentityScore = 0;
 					}
-					
-						if (typeof obj.payload.st_coins === 'undefined'){
+								if (typeof obj.payload.st_coins === 'undefined'){
 					runtime.globalVars.ShapeIdentityCoins = 0;
 					}
-						
+									if (typeof obj.payload.ST_HighestLevelPlayed === 'undefined'){
+					runtime.globalVars.ST_HighestLevelPlayed = 0;
 					}
-					
-					
-					
+					}
 				}
 			})
 		},
 
-		async Functions_es_Event5_Act1(runtime, localVars)
+		async Functions_data_es_Event4_Act1(runtime, localVars)
 		{
 			window.parent.postMessage(
 			{
@@ -7137,7 +7095,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			},"*");
 		},
 
-		async Functions_es_Event7_Act1(runtime, localVars)
+		async Functions_data_es_Event6_Act1(runtime, localVars)
 		{
 			window.parent.postMessage(
 			{
@@ -7148,7 +7106,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			},"*");
 		},
 
-		async Functions_es_Event9_Act1(runtime, localVars)
+		async Functions_data_es_Event8_Act1(runtime, localVars)
 		{
 			window.parent.postMessage(
 			{
@@ -7160,19 +7118,19 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			//alert("Posted " + localVars.GameToOpen);
 		},
 
-		async Functions_es_Event11_Act1(runtime, localVars)
+		async Functions_data_es_Event10_Act1(runtime, localVars)
 		{
 			window.parent.postMessage(
 			{
 			    "action": "open_activity",
 				"payload": {
-					"app_key": "cleanliness"
+					"app_key": "time-machine"
 				}
 			},"*");
 			//alert("Posted")
 		},
 
-		async Functions_es_Event13_Act1(runtime, localVars)
+		async Functions_data_es_Event12_Act1(runtime, localVars)
 		{
 			window.parent.postMessage(
 			{
@@ -7184,7 +7142,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			//alert("Posted")
 		},
 
-		async Functions_es_Event15_Act1(runtime, localVars)
+		async Functions_data_es_Event14_Act1(runtime, localVars)
 		{
 			window.parent.postMessage(
 			{
@@ -7197,13 +7155,38 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			//alert("Posted")
 		},
 
-		async Functions_es_Event17_Act1(runtime, localVars)
+		async Functions_data_es_Event16_Act1(runtime, localVars)
+		{
+			window.parent.postMessage(
+			{
+			    "action": "update_user_data",
+				"payload": {
+					"dataKey": localVars.dataKey,
+					"value" : localVars.value
+				}
+			},"*");
+			//alert("Posted")
+		},
+
+		async Functions_data_es_Event18_Act1(runtime, localVars)
 		{
 			window.parent.postMessage(
 			{
 			    "action": "retrieve_user_data",
 				"payload": {
-					"app_key": "shapes-trivia"
+					"app_key": "time-machine"
+				}
+			},"*");
+		},
+
+		async Functions_data_es_Event20_Act1(runtime, localVars)
+		{
+			window.parent.postMessage(
+			{
+			    "action": "update_user_data",
+				"payload": {
+					"dataKey": localVars.dataKey,
+					"value" : localVars.value
 				}
 			},"*");
 			//alert("Posted")
