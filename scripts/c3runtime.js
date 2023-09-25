@@ -6138,7 +6138,6 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		C3.Plugins.LocalStorage.Acts.SetItem,
 		C3.Plugins.iframe.Acts.Destroy,
 		C3.Plugins.System.Cnds.CompareTime,
-		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Exps.userData,
 		C3.ScriptsInEvents.Functions_data_es_Event2_Act1,
 		C3.ScriptsInEvents.Functions_data_es_Event4_Act1,
 		C3.ScriptsInEvents.Functions_data_es_Event6_Act1,
@@ -6524,6 +6523,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		{InFeedback: 0},
 		{Timer: 0},
 		{HasUpdatedSessionPoints: 0},
+		{SessionPoints: 0},
 		{GameKey: 0},
 		{GameAction: 0},
 		{UserEmail: 0},
@@ -6960,12 +6960,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			return () => and(((("https://iridescent-syrniki-fd6560.netlify.app" + "?appId=") + "-Muk25p-B3tCEVZWlbD5") + "&userId="), v0.GetValue());
 		},
 		() => "Session Point Logic",
-		() => "ST_SessionPoints",
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			const f1 = p._GetNode(1).GetBoundMethod();
-			return () => (f0(f1("ST_SessionPoints")) + 1);
-		}
+		() => "ST_SessionPoints"
 	];
 }
 
@@ -7072,6 +7067,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 						runtime.globalVars.PlayerNickname = obj.payload.playernickname;
 						runtime.globalVars.ShapeIdentityScore = obj.payload.st_score;
 						runtime.globalVars.ShapeIdentityCoins = obj.payload.st_coins;
+						runtime.globalVars.SessionPoints = obj.payload.ST_SessionPoints;
 						runtime.globalVars.ST_HighestLevelPlayed = obj.payload.ST_HighestLevelPlayed;
 								if (typeof obj.payload.st_score === 'undefined'){
 					runtime.globalVars.ShapeIdentityScore = 0;
@@ -7081,6 +7077,9 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 					}
 									if (typeof obj.payload.ST_HighestLevelPlayed === 'undefined'){
 					runtime.globalVars.ST_HighestLevelPlayed = 0;
+					}
+											if (typeof obj.payload.ST_SessionPoints === 'undefined'){
+					runtime.globalVars.SessionPoints = 0;
 					}
 					}
 				}
