@@ -2403,9 +2403,6 @@ true;const result=await this._runtime.PostComponentMessageToDOMAsync("runtime","
 self["C3_Shaders"] = {};
 
 
-// c3runtime/authState.js
-function ca_Fun() { fs_SD["auth"]()["onAuthStateChanged"](function(user) { if (user) { userFirebase = user; isSignedInFirebase = 1; uidFirebase = user["uid"]; emailVerifiedFirebase = user["emailVerified"]; if (user["displayName"] != null) { UsernameFirebase = user["displayName"]; } if (user.photoURL != null) { photoUrlFirebase = user["photoURL"]; } if (user.email != null) { emailFirebase = user["email"]; } if (user.providerId != null) { providerFirebase = user["providerId"]; } if (enableDebug) { console.log("LOGGED IN"+"\nuid: "+uidFirebase+"\nprovider: "+providerFirebase+"\nemail: "+emailFirebase+"\nisEmailVerified: "+emailVerifiedFirebase+"\nusername: "+UsernameFirebase+"\nphotoURL: "+photoUrlFirebase+"\n "); } } else { isSignedInFirebase = 0; UsernameFirebase = ""; uidFirebase = ""; photoUrlFirebase = ""; emailFirebase = ""; emailVerifiedFirebase = false; if (enableDebug) console.log("LOGGED OUT"+"\n "); if(typeof userKey != "undefined"){ userKey=""; onReadKey=0; } } flgSD = 1; }) } function ErrorSDFirebaseBasic(err, nameSDfb){ errCd_SDFirebase = err["code"]; errMsg_SDFirebase = err["message"]; psbf3c4 = nameSDfb; hasError_SDFirebase = 1; if (enableDebug) { console.error("ERROR REPORT"+"\nerrorActionCode: "+psbf3c4+"\nerrorcode: "+ err["code"]+"\nerrormessage: "+ err["message"]+"\n ") } }
-
 'use strict';{const C3=self.C3;let cacheRegex=null;let lastRegex="";let lastFlags="";let regexMatches=[];let lastMatchesStr="";let lastMatchesRegex="";let lastMatchesFlags="";const forEachStack=C3.New(C3.ArrayStack);function ForEachOrdered_SortInstances(a,b){const va=a[1];const vb=b[1];if(typeof va==="number"&&typeof vb==="number")return va-vb;else{const sa=""+va;const sb=""+vb;if(sa<sb)return-1;else if(sa>sb)return 1;else return 0}}C3.Plugins.System=class SystemPlugin extends C3.SDKPluginBase{constructor(opts){super(opts);
 this._loopStack=this._runtime.GetEventSheetManager().GetLoopStack();this._eventStack=this._runtime.GetEventSheetManager().GetEventStack();this._imagesLoadingTotal=0;this._imagesLoadingComplete=0;this._functionMaps=new Map}Release(){super.Release()}UpdateRender(){this._runtime.UpdateRender()}Trigger(method){this._runtime.Trigger(method,null,null)}GetRegex(regex,flags){if(!cacheRegex||regex!==lastRegex||flags!==lastFlags){cacheRegex=new RegExp(regex,flags);lastRegex=regex;lastFlags=flags}cacheRegex.lastIndex=
 0;return cacheRegex}GetRegexMatches(str,regex,flags){if(str===lastMatchesStr&&regex===lastMatchesRegex&&flags===lastMatchesFlags)return regexMatches;const cacheRegex=this.GetRegex(regex,flags);regexMatches=str.match(cacheRegex);lastMatchesStr=str;lastMatchesRegex=regex;lastMatchesFlags=flags;return regexMatches}async _LoadTexturesForObjectClasses(layout,objectClasses){if(!objectClasses.length)return;this._imagesLoadingTotal+=objectClasses.length;const promises=[];for(const oc of objectClasses)promises.push(layout.MaybeLoadTexturesFor(oc));
@@ -2970,1414 +2967,6 @@ await this._storage.keys();await this.ScheduleTriggers(async()=>{this._keyNamesL
 
 'use strict';{const C3=self.C3;C3.Plugins.LocalStorage.Exps={ItemValue(){return this._lastValue},Key(){return this._currentKey},KeyCount(){return this._keyNamesList.length},KeyAt(i){i=Math.floor(i);if(i<0||i>=this._keyNamesList.length)return"";return this._keyNamesList[i]},ErrorMessage(){return this._errorMessage}}};
 
-
-"use strict";
-{
-    C3.Plugins.Sparsha_FirebaseAuth = class FirebaseAuthPlugin extends C3.SDKPluginBase
-    {
-        constructor(opts)
-        {
-            super(opts);
-        }
-
-        Release()
-        {
-            super.Release();
-        }
-    };
-}
-
-"use strict";
-{
-    C3.Plugins.Sparsha_FirebaseAuth.Type = class FirebaseAuthType extends C3.SDKTypeBase
-    {
-        constructor(objectClass)
-        {
-            super(objectClass);
-        }
-
-        Release()
-        {
-            super.Release();
-        }
-
-        OnCreate()
-        {}
-    };
-}
-
-"use strict";
-
-var psbf3c1 = "";
-var psbf3c2 = "";
-var psbf3c3 = 0;
-
-var psbf3c4 = "";
-
-var emailVerifiedFirebase = false;
-var uidFirebase = "";
-var photoUrlFirebase = "";
-var providerFirebase = "";
-var emailFirebase = "";
-var UsernameFirebase = "";
-var isSignedInFirebase = 0;
-var onUsernameUpdate = 0;
-//var onVerifyEmailSent=0;
-
-var psbf3c5 = {
-    psbf3c6: false,
-    psbf3c7: false,
-    psbf3c8: false,
-    psbf3c9: false,
-    psbf3c10: false,
-    psbf3c11: false,
-    psbf3c12: false,
-}
-
-var userFirebase = "";
-
-{
-    C3.Plugins.Sparsha_FirebaseAuth.Instance = class FirebaseAuthInstance extends C3.SDKInstanceBase
-    {
-        constructor(inst, properties)
-        {
-            super(inst);
-
-
-            if (properties)
-            {
-                //this.Debug = properties[0];
-            }
-        }
-
-        Release()
-        {
-            super.Release();
-        }
-
-        SaveToJson()
-        {
-            return {
-                // data to be saved for savegames
-            };
-        }
-
-        LoadFromJson(o)
-        {
-            // load state for savegames
-        }
-
-        GetDebuggerProperties()
-        {
-            return [
-            {
-                title: "FirebaseAuth",
-                properties: [
-                    //{name: ".current-animation",	value: this._currentAnimation.GetName(),	onedit: v => this.CallAction(Acts.SetAnim, v, 0) },
-                ]
-            }];
-        }
-    };
-}
-
-"use strict";
-{
-    C3.Plugins.Sparsha_FirebaseAuth.Cnds = {
-        ErrorOccured()
-        {
-            if (psbf3c3 == 1)
-            {
-                psbf3c3 = 0;
-                return true;
-            }
-            else return false;
-        },
-
-        IsSignedIn()
-        {
-            if (isSignedInFirebase == 1) return true;
-            else return false;
-        },
-
-        IsEmailVerified()
-        {
-            if (emailVerifiedFirebase) return true;
-            else return false;
-        },
-
-        OnSendPhone()
-        {
-            if (psbf3c5.psbf3c6)
-            {
-                psbf3c5.psbf3c6 = false;
-                return true;
-            }
-            else return false;
-        },
-
-        OnUpdateProfile()
-        {
-            if (psbf3c5.psbf3c7)
-            {
-                psbf3c5.psbf3c7 = false;
-                return true;
-            }
-            else return false;
-        },
-
-        OnVerifyEmailSent()
-        {
-            if (psbf3c5.psbf3c8)
-            {
-                //psbf3c5.psbf3c8 = false;
-                return true;
-            }
-            else return false;
-        },
-
-        OnAuthEmailLinkSent()
-        {
-            if (psbf3c5.psbf3c9)
-            {
-                psbf3c5.psbf3c9 = false;
-                return true;
-            }
-            else return false;
-        },
-
-        OnDeleteUser()
-        {
-            if (psbf3c5.psbf3c10)
-            {
-                psbf3c5.psbf3c10 = false;
-                return true;
-            }
-            else return false;
-        }
-    };
-}
-
-"use strict";
-{
-    C3.Plugins.Sparsha_FirebaseAuth.Acts = {
-        async Signupemail(emaildb, passdb)
-        {
-            await fs_SD["auth"]()["createUserWithEmailAndPassword"](emaildb, passdb).
-            catch (function(error)
-            {
-                ErrorSDFirebaseBasic(error, "sign-up-email")
-            });
-        },
-
-        async Signinemail(emaildb, passdb)
-        {
-            await fs_SD["auth"]()["signInWithEmailAndPassword"](emaildb, passdb).
-            catch (function(error)
-            {
-                ErrorSDFirebaseBasic(error, "sign-in-email");
-            });
-
-        },
-
-        async VerifyEmail()
-        {
-
-            var user = fs_SD["auth"]()["currentUser"];
-            await user["sendEmailVerification"]().then(function()
-            {
-                // Email sent.
-                if (enableDebug) console.log("VERIFICATION EMAIL SENT" + "\n ")
-                psbf3c5.psbf3c8 = true;
-            }).
-            catch (function(error)
-            {
-                ErrorSDFirebaseBasic(error, "verify-email")
-            });
-        },
-
-        async UpdateEmail(updateEmail)
-        {
-
-            await fs_SD["auth"]["updateEmail"]("updateEmail").then(function()
-            {
-                emailFirebase = updateEmail;
-                psbf3c5.psbf3c12 = true;
-                if (enableDebug) console.log("EMAIL UPDATED" + "\nNew email: " + updateEmail + "\n ")
-            }).
-            catch (function(error)
-            {
-                ErrorSDFirebaseBasic(error, "update-email")
-            });
-        },
-
-        async Signupname(emaildb, passdb, yourDomain)
-        {
-
-            var namelog = emaildb + "@" + yourDomain;
-            await fs_SD["auth"]()["createUserWithEmailAndPassword"](namelog, passdb).
-            catch (function(error)
-            {
-                ErrorSDFirebaseBasic(error, "sign-up-name");
-            });
-        },
-
-        async Signinname(emaildb, passdb, yourDomain)
-        {
-
-            var namelog = emaildb + "@" + yourDomain;
-            await fs_SD["auth"]()["signInWithEmailAndPassword"](namelog, passdb).
-            catch (function(error)
-            {
-                ErrorSDFirebaseBasic(error, "sign-in-name")
-            });
-        },
-
-        SendPhoneNumber(phoneNumber, sendButtonId)
-        {
-
-            document.getElementById(sendButtonId).onclick = a();
-
-            function a()
-            {
-                if (typeof window.recaptchaVerifier == "undefined")
-                {
-                    captcha();
-                }
-                else
-                {
-                    window.recaptchaVerifier["render"]().then(function(widgetId)
-                    {
-                        eval("grecaptcha")["reset"](widgetId);
-                    })
-                }
-            }
-
-            function captcha()
-            {
-                window.recaptchaVerifier = new fs_SD["auth"]["RecaptchaVerifier"](sendButtonId,
-                {
-                    'size': 'invisible',
-                    'callback': function(response)
-                    {}
-                });
-                recaptchaVerifier["render"]().then(function(widgetId)
-                {
-                    window.recaptchaWidgetId = widgetId;
-                    if (enableDebug) console.log("reCaptcha VERIFIED" + "\n ");
-                    SendNumber();
-                });
-            }
-
-            function SendNumber()
-            {
-                fs_SD["auth"]()["signInWithPhoneNumber"](phoneNumber, window.recaptchaVerifier)
-                    .then(function(confirmationResult)
-                {
-                    window.confirmationResult = confirmationResult;
-                    psbf3c5.psbf3c6 = true;
-                    if (enableDebug) console.log("OTP SENT TO PHONE" + "\n ")
-                }).
-                catch (function(error)
-                {
-                    ErrorSDFirebaseBasic(error, "send-otp-message")
-                    window.recaptchaVerifier["render"]().then(function(widgetId)
-                    {
-                        eval("grecaptcha")["reset"](widgetId);
-                        if (enableDebug) console.log("reCaptcha RESET")
-                    })
-                })
-            }
-        },
-
-        async SubmitOtp(otp)
-        {
-
-            await eval("confirmationResult")["confirm"](otp).then(function(result)
-            {
-                // User signed in successfully.
-                var user = result.user;
-                // ...
-            }).
-            catch (function(error)
-            {
-                ErrorSDFirebaseBasic(error, "submit-otp")
-            });
-        },
-
-        async GoogleAuth()
-        {
-
-            var provider = new fs_SD["auth"]["GoogleAuthProvider"]();
-            await fs_SD["auth"]()["signInWithPopup"](provider).
-            catch (function(error)
-            {
-                ErrorSDFirebaseBasic(error, "google-popup")
-            });
-        },
-
-        async FacebookAuth()
-        {
-
-            var provider = new fs_SD["auth"]["FacebookAuthProvider"]();
-            await fs_SD["auth"]()["signInWithPopup"](provider).
-            catch (function(error)
-            {
-                ErrorSDFirebaseBasic(error, "facebook-popup")
-            });
-        },
-
-        async AppleAuth()
-        {
-
-            var provider = new fs_SD["auth"]["OAuthProvider"]('apple.com');
-            await fs_SD["auth"]()["signInWithPopup"](provider).
-            catch (function(error)
-            {
-                ErrorSDFirebaseBasic(error, "apple-popup")
-            });
-        },
-
-        async GithubAuth()
-        {
-
-            var provider = new fs_SD["auth"]["GithubAuthProvider"]();
-            await fs_SD["auth"]()["signInWithPopup"](provider).
-            catch (function(error)
-            {
-                ErrorSDFirebaseBasic(error, "github-popup")
-            });
-        },
-
-        async Microsoft()
-        {
-
-            var provider = new fs_SD["auth"]["OAuthProvider"]["MicrosoftProvider"]('microsoft.com');
-            await fs_SD["auth"]()["signInWithPopup"](provider).
-            catch (function(error)
-            {
-                ErrorSDFirebaseBasic(error, "microsoft-popup")
-            });
-        },
-
-        async YahooAuth()
-        {
-
-            var provider = new fs_SD["auth"]["OAuthProvider"]["YahooAuthProvider"]('yahoo.com');
-            await fs_SD["auth"]()["signInWithPopup"](provider).
-            catch (function(error)
-            {
-                ErrorSDFirebaseBasic(error, "yahoo-popup")
-            });
-        },
-
-        async SignOut()
-        {
-
-            await fs_SD["auth"]()["signOut"]().then(function()
-            {
-                // Sign-out successful.
-            }).
-            catch (function(error)
-            {
-                ErrorSDFirebaseBasic(error, "sign-out")
-            });
-        },
-
-        async UpdateUsername(name, photourl)
-        {
-
-            var user = userFirebase;
-            if (name != "" & photourl != "")
-            {
-                await user["psbf3c7"](
-                {
-                    "displayName": name,
-                    "photoURL": photourl
-                }).then(function()
-                {
-                    UsernameFirebase = user["displayName"];
-                    photoUrlFirebase = user["photoURL"];
-                    psbf3c5.psbf3c7 = true;
-                    if (enableDebug) console.log("PROFILE UPDATED" + "\nNew Username:" + UsernameFirebase + "\nNew PhotoURL: " + photoUrlFirebase + "\n ");
-                }).
-                catch (function(error)
-                {
-                    ErrorSDFirebaseBasic(error, "update-profile")
-                });
-            }
-            if (name == "" & photourl != "")
-            {
-                await user["psbf3c7"](
-                {
-                    "photoURL": photourl
-                }).then(function()
-                {
-                    photoUrlFirebase = user["photoURL"];
-                    psbf3c5.psbf3c7 = true;
-                    if (enableDebug) console.log("PROFILE UPDATED" + "\nNew PhotoURL: " + photoUrlFirebase + "\n ")
-                }).
-                catch (function(error)
-                {
-                    ErrorSDFirebaseBasic(error, "update-profile")
-                });
-            }
-            if (name != "" & photourl == "")
-            {
-                await user["psbf3c7"](
-                {
-                    "displayName": name,
-                }).then(function()
-                {
-                    UsernameFirebase = user["displayName"];
-                    psbf3c5.psbf3c7 = true;
-                    if (enableDebug) console.log("PROFILE UPDATED" + "\nNew Username:" + UsernameFirebase + "\n ");
-                }).
-                catch (function(error)
-                {
-                    ErrorSDFirebaseBasic(error, "update-profile")
-                });
-            }
-        },
-
-        ClearError()
-        {
-            psbf3c1 = "";
-            psbf3c2 = "";
-            psbf3c4 = "";
-        },
-
-        async DeleteUser()
-        {
-            var user = userFirebase;
-            await user["delete"]().then(function()
-            {
-                // User deleted.
-                psbf3c5.psbf3c10 = true;
-                if (enableDebug) console.log("USER DELETED" + "\n ");
-            }).
-            catch (function(error)
-            {
-                ErrorSDFirebaseBasic(error, "delete-user")
-            });
-        },
-
-        async ResetPassword()
-        {
-            await fs_SD["auth"]["sendPasswordResetEmail"](emailAddress).then(function()
-            {
-                psbf3c5.psbf3c11 = true;
-                if (enableDebug) console.log("PASSWORD RESET EMAIL SENT" + "\n ")
-            }).
-            catch (function(error)
-            {
-                psbf3c1 = error["code"];
-                psbf3c2 = error["message"];
-                psbf3c4 = "reset-password";
-                psbf3c3 = 1;
-                if (enableDebug)
-                {
-                    console.error("ERROR REPORT" + "\nerrorActionCode: " + psbf3c4 + "\nerrorcode: " + error["code"] + "\nerrormessage: " + error["message"] + "\n ")
-                }
-            });
-        }
-    };
-}
-
-"use strict";
-{
-    C3.Plugins.Sparsha_FirebaseAuth.Exps = {
-        errorCode()
-        {
-            return psbf3c1;
-        },
-
-        errorMessage()
-        {
-            return psbf3c2;
-        },
-
-        errorActionCode()
-        {
-            return psbf3c4;
-        },
-
-        userName()
-        {
-            return UsernameFirebase;
-        },
-
-        userID()
-        {
-            return uidFirebase;
-        },
-
-        email()
-        {
-            return emailFirebase;
-        },
-
-        picURL()
-        {
-            return photoUrlFirebase;
-        },
-
-        provider()
-        {
-            return providerFirebase;
-        }
-    };
-}
-
-"use strict";
-{
-    C3.Plugins.Sparsha_FirebaseRealtimeDatabase = class FirebaseReadDataPlugin extends C3.SDKPluginBase
-    {
-        constructor(opts)
-        {
-            super(opts);
-        }
-
-        Release()
-        {
-            super.Release();
-        }
-    };
-}
-
-"use strict";
-{
-    C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Type = class FirebaseReadDataType extends C3.SDKTypeBase
-    {
-        constructor(objectClass)
-        {
-            super(objectClass);
-        }
-
-        Release()
-        {
-            super.Release();
-        }
-
-        OnCreate()
-        {}
-    };
-}
-
-"use strict";
-
-var psbf3c13 = {};
-var psbf3c14 = {};
-var psbf3c15 = {};
-
-var psbf3c16 = {};
-var psbf3c17 = {};
-var psbf3c18 = {};
-var psbf3c19 = false;
-
-var psbf3c20 = {};
-var psbf3c21 = {};
-var psbf3c22 = {};
-var psbf3c23 = {};
-
-var psbf3c24 = {};
-var psbf3c25 = {};
-var psbf3c26 = {};
-var psbf3c27 = {}
-
-var psbf3c28 = {};
-var psbf3c29 = {};
-
-var psbf3c30 = false;
-var psbf3c31 = false;
-
-var psbf3c32 = "";
-var psbf3c33 = 0;
-
-{
-    C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Instance = class FirebaseReadDataInstance extends C3.SDKInstanceBase
-    {
-        constructor(inst, properties)
-        {
-            super(inst);
-
-
-            if (properties)
-            {
-                psbf3c30 = properties[0];
-                psbf3c31 = properties[0];
-            }
-        }
-
-        Release()
-        {
-            super.Release();
-        }
-
-        SaveToJson()
-        {
-            return {
-                // data to be saved for savegames
-            };
-        }
-
-        LoadFromJson(o)
-        {
-            // load state for savegames
-        }
-
-        GetDebuggerProperties()
-        {
-            return [
-            {
-                title: "FirebaseReadData",
-                properties: [
-                    //{name: ".current-animation",	value: this._currentAnimation.GetName(),	onedit: v => this.CallAction(Acts.SetAnim, v, 0) },
-                ]
-            }];
-        }
-    };
-}
-
-"use strict";
-{
-    C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Cnds = {
-        OnAdvRead(id)
-        {
-            if (typeof psbf3c20[id] != "undefined")
-            {
-                if (psbf3c20[id] == 1)
-                {
-                    return true;
-                }
-                else return false;
-            }
-            else return false;
-        },
-
-        OnSimpleRead(id)
-        {
-            if (typeof psbf3c24[id] != "undefined")
-            {
-                if (psbf3c24[id] == 1)
-                {
-                    return true;
-                }
-                else return false;
-            }
-            else return false;
-        },
-
-        OnSimpleLeaderboard(id)
-        {
-            if (typeof psbf3c26[id] != "undefined")
-            {
-                if (psbf3c26[id] == 1)
-                {
-                    return true;
-                }
-                else return false;
-            }
-            else return false;
-        },
-
-        OnAdvancedLeaderboard(id)
-        {
-            if (typeof psbf3c22[id] != "undefined")
-            {
-                if (psbf3c22[id] == 1)
-                {
-                    return true;
-                }
-                else return false;
-            }
-            else return false;
-        },
-
-        OnAdvNoexist(id)
-        {
-            if (typeof psbf3c29[id] != "undefined")
-            {
-                if (psbf3c29[id] == 1)
-                {
-                    return true;
-                    psbf3c29[id] = 0;
-                }
-                else return false;
-            }
-            else return false;
-        },
-
-        OnSimpleNoexist(id)
-        {
-            if (typeof psbf3c28[id] != "undefined")
-            {
-                if (psbf3c28[id] == 1)
-                {
-                    return true;
-                    psbf3c28[id] = 0;
-                }
-                else return false;
-            }
-            else return false;
-        },
-
-        OnDatabaseError()
-        {
-            if (psbf3c33 == 1)
-            {
-                psbf3c33 = 0;
-                return true;
-            }
-            else return false;
-        },
-
-        OnAdvTrigger(id)
-        {
-            if (typeof psbf3c21[id] != "undefined")
-            {
-                if (psbf3c21[id] == 1)
-                {
-                    psbf3c21[id] = 0;
-                    return true;
-                }
-                else return false;
-            }
-            else return false;
-        },
-
-        OnSimpleTrigger(id)
-        {
-            if (typeof psbf3c25[id] != "undefined")
-            {
-                if (psbf3c25[id] == 1)
-                {
-                    psbf3c25[id] = 0;
-                    return true;
-                }
-                else return false;
-            }
-            else return false;
-        },
-
-        OnSimpleLbTrigger(id)
-        {
-            if (typeof psbf3c27[id] != "undefined")
-            {
-                if (psbf3c27[id] == 1)
-                {
-                    psbf3c27[id] = 0;
-                    return true;
-                }
-                else return false;
-            }
-            else return false;
-        },
-
-        OnAdvancedLbTrigger(id)
-        {
-            if (typeof psbf3c23[id] != "undefined")
-            {
-                if (psbf3c23[id] == 1)
-                {
-                    psbf3c23[id] = 0;
-                    return true;
-                }
-                else return false;
-            }
-            else return false;
-        }
-    };
-}
-
-"use strict";
-{
-    C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Acts = {
-        async AdvancedReadData(locationLink, id, sync, readJSON)
-        {
-            psbf3c20[id] = 0;
-            psbf3c21[id] = 0;
-            psbf3c29[id] = 0;
-
-            var dbRefScore = fs_SD["database"]()["ref"](locationLink);
-
-            function UpdateReadData(snap)
-            {
-                if (snap["exists"]())
-                {
-                    var value = snap["val"]();
-
-                    if (readJSON) psbf3c13[id] = JSON.stringify(value);
-                    else psbf3c13[id] = value;
-
-                    psbf3c20[id] = 1;
-                    psbf3c21[id] = 1;
-                }
-                else psbf3c29[id] = 1;
-
-                if (enableDebug && psbf3c30 == false)
-                {
-                    console.log("%cREAD SUCCESSFUL" + "\ncategory: Custom" + "\nlocation: " + locationLink + "\ndata: " + psbf3c13[id] + "\n ", 'color: Teal');
-                }
-            }
-
-            if (sync)
-            {
-                await dbRefScore["on"]('value', function(snap)
-                {
-                    UpdateReadData(snap);
-                })
-            }
-            else
-            {
-                await dbRefScore["once"]('value', function(snap)
-                {
-                    UpdateReadData(snap);
-                }).
-                catch (e => {
-                    psbf3c32 = e.toString();
-                    if (enableDebug && psbf3c30 == false) console.error(psbf3c32);
-                    psbf3c33 = 1;
-                });
-            }
-        },
-
-        async SimpleReadData(Key, id, sync)
-        {
-            psbf3c24[id] = 0;
-            psbf3c25[id] = 0;
-            psbf3c28[id] = 0;
-
-            var dbRefScore = fs_SD["database"]()["ref"]("userAccount/" + uidFirebase + "/" + Key + "/");
-
-            function UpdateReadData(snap)
-            {
-                if (snap["exists"]())
-                {
-                    var value = snap["val"]();
-
-                    psbf3c16[id] = value;
-
-                    psbf3c24[id] = 1;
-                    psbf3c25[id] = 1;
-
-                    if (enableDebug && psbf3c30 == false)
-                    {
-                        console.log("%cREAD SUCCESSFUL" + "\ncategory: User" + "\nlocation: " + "userAccount/" + uidFirebase + "/" + Key + "\ndata: " + psbf3c16[id] + "\n ", 'color: Teal');
-                    }
-                }
-                else psbf3c28[id] = 1;
-            }
-
-            if (sync)
-            {
-
-                await dbRefScore["on"]('value', function(snap)
-                {
-                    UpdateReadData(snap)
-                })
-            }
-            else
-            {
-                await dbRefScore["once"]('value', function(snap)
-                {
-                    UpdateReadData(snap)
-                }).
-                catch (e => {
-                    psbf3c32 = e.toString();
-                    if (enableDebug && psbf3c30 == false) console.error(psbf3c32);
-                    psbf3c33 = 1;
-                });
-            }
-
-        },
-
-        async SimpleReadLeaderboard(keys, orderChild, size, id, sync)
-        {
-            psbf3c26[id] = 0;
-            psbf3c27[id] = 0;
-
-            keys = "'" + keys + "'";
-            keys = keys.replace(/ /g, "");
-            keys = keys.replace(/,/g, "','");
-            keys = eval("[" + keys + "]");
-            var n = keys.length;
-
-            var iLoop = 0;
-            var rankCount = 0;
-
-            function UpdateReadData(snapshot)
-            {
-                var allowRankChange = true;
-                if (snapshot["exists"]()) iLoop = Object.keys(snapshot.val()).length - 1;
-                rankCount = iLoop + 1;
-                snapshot["forEach"](function(childSnapshot)
-                {
-                    for (var i = 0; i < n; i++)
-                    {
-                        var childData = childSnapshot["child"](keys[i])["val"]();
-                        psbf3c17[id + keys[i] + iLoop] = childData;
-                    }
-
-                    if (childSnapshot["child"]("userID")["val"]() == uidFirebase)
-                    {
-                        psbf3c18[id] = rankCount;
-                        allowRankChange = false;
-                    }
-                    else if (allowRankChange) psbf3c18[id] = 0;
-                    --rankCount;
-
-                    --iLoop;
-                });
-
-                psbf3c26[id] = 1;
-                psbf3c27[id] = 1;
-
-                if (enableDebug && psbf3c30 == false)
-                {
-                    console.log("%cREAD SUCCESSFUL" + "\ncategory: User Leaderboard" + "\nlocation: " + "userLeaderboard/" + "\n ", 'color: Teal');
-                }
-            }
-
-            var query = fs_SD["database"]()["ref"]('userLeaderboard')["orderByChild"](orderChild)["limitToLast"](size);
-            if (sync)
-            {
-                await query["on"]("value", function(snapshot)
-                {
-                    UpdateReadData(snapshot)
-                });
-            }
-            else
-            {
-                await query["once"]("value", function(snapshot)
-                {
-                    UpdateReadData(snapshot)
-                }).
-                catch (e => {
-                    psbf3c32 = e.toString();
-                    if (enableDebug && psbf3c30 == false) console.error(psbf3c32);
-                    psbf3c33 = 1;
-                });
-            }
-        },
-
-        async AdvancedReadLeaderboard(locationlink, keys, orderChild, size, id, sync, rankKey, rankData)
-        {
-            psbf3c22[id] = 0;
-            psbf3c23[id] = 0;
-
-            keys = "'" + keys + "'";
-            keys = keys.replace(/ /g, "");
-            keys = keys.replace(/,/g, "','");
-            keys = eval("[" + keys + "]");
-            var n = keys.length;
-
-            var iLoop = 0;
-            var rankCount = 0;
-
-            function UpdateReadData(snapshot)
-            {
-                var allowRankChange = true;
-                if (snapshot["exists"]()) iLoop = Object.keys(snapshot.val()).length - 1;
-                rankCount = iLoop + 1;
-                snapshot["forEach"](function(childSnapshot)
-                {
-                    for (var i = 0; i < n; i++)
-                    {
-                        var childData = childSnapshot["child"](keys[i])["val"]();
-                        psbf3c14[id + keys[i] + iLoop] = childData;
-                    }
-
-                    if (rankKey != "" && rankData != "")
-                    {
-                        if (childSnapshot["child"](rankKey)["val"]() == rankData)
-                        {
-                            psbf3c15[id] = rankCount;
-                            allowRankChange = false;
-                        }
-                        else if (allowRankChange) psbf3c15[id] = 0;
-                        --rankCount;
-                    }
-
-                    --iLoop;
-
-                });
-
-                psbf3c22[id] = 1;
-                psbf3c23[id] = 1;
-
-                if (enableDebug && psbf3c30 == false)
-                {
-                    console.log("%cREAD SUCCESSFUL" + "\ncategory: Custom Leaderboard" + "\nlocation: " + locationlink + "\n ", 'color: Teal');
-                }
-            }
-
-            var query = fs_SD["database"]()["ref"](locationlink)["orderByChild"](orderChild)["limitToLast"](size)
-            if (sync)
-            {
-                await query["on"]("value", function(snapshot)
-                {
-                    UpdateReadData(snapshot)
-                });
-            }
-            else
-            {
-                await query["once"]("value", function(snapshot)
-                {
-                    UpdateReadData(snapshot)
-                }).
-                catch (e => {
-                    psbf3c32 = e.toString();
-                    if (enableDebug && psbf3c30 == false) console.error(psbf3c32);
-                    psbf3c33 = 1;
-                });
-            }
-        },
-
-        async SimpleWriteData(key, value)
-        {
-            await fs_SD["database"]()["ref"]("userAccount/" + uidFirebase + '/' + key + '/')["set"](value);
-            if (enableDebug && psbf3c31 == false)
-            {
-                console.log("%cWRITE SUCCESSFUL" + "\ncategory: User" + "\nlocation: " + "userAccount/" + uidFirebase + '/' + key + "\ndata: " + value + "\n ", 'color: DarkSlateBlue');
-            }
-        },
-
-        async AdvancedWriteData(locationLink, data)
-        {
-            await fs_SD["database"]()["ref"](locationLink + '/')["set"](data);
-            if (enableDebug && psbf3c31 == false)
-            {
-                console.log("%cWRITE SUCCESSFUL" + "\ncategory: Custom" + "\nlocation: " + locationLink + "\ndata: " + data + "\n ", 'color: DarkSlateBlue');
-            }
-        },
-
-        async SimpleWriteLeaderboard(key, value)
-        {
-            if (psbf3c19 == false)
-            {
-                fs_SD["database"]()["ref"]("userLeaderboard/" + uidFirebase + '/userID/')["set"](uidFirebase);
-                psbf3c19 = true;
-            }
-            await fs_SD["database"]()["ref"]("userLeaderboard/" + uidFirebase + '/' + key + '/')["set"](value);
-            if (enableDebug && psbf3c31 == false)
-            {
-                console.log("%cWRITE SUCCESSFUL" + "\ncategory: User Leaderboard" + "\nlocation: " + "userLeaderboard/" + uidFirebase + '/' + key + "\ndata: " + value + "\n ", 'color: DarkSlateBlue');
-            }
-
-        },
-
-        async AdvancedWriteLeaderboard(locationlink, key, value)
-        {
-            await fs_SD["database"]()["ref"](locationlink + '/' + key + '/')["set"](value);
-            if (enableDebug && psbf3c31 == false)
-            {
-                console.log("%cWRITE SUCCESSFUL" + "\ncategory: Custom Leaderboard" + "\nlocation: " + locationlink + '/' + key + "\ndata: " + value + "\n ", 'color: DarkSlateBlue');
-            }
-        },
-
-        async RemoveData(locationLink)
-        {
-            await fs_SD["database"]()["ref"](locationLink)['remove']();
-            if (enableDebug)
-            {
-                console.log("DATA REMOVED" + "\nlocation: " + locationlink + "\n ");
-            }
-        }
-    };
-}
-
-"use strict";
-{
-    C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Exps = {
-        customData(id)
-        {
-            var mty = " ";
-            if (typeof psbf3c13[id] != "undefined")
-            {
-                var value = psbf3c13[id];
-                return value;
-            }
-
-            else return mty;
-        },
-
-        userData(id)
-        {
-            var mty = " ";
-            if (typeof psbf3c16[id] != "undefined")
-            {
-                var value = psbf3c16[id];
-                return value;
-            }
-
-            else return mty
-        },
-
-        userLeaderboard(id, key, index)
-        {
-            var mty = " ";
-            if (typeof psbf3c17[id + key + index] != "undefined")
-            {
-                var value = psbf3c17[id + key + index];
-                return value;
-            }
-
-            else return mty
-        },
-
-        customLeaderboard(id, key, index)
-        {
-            var mty = " ";
-            if (typeof psbf3c14[id + key + index] != "undefined")
-            {
-                var value = psbf3c14[id + key + index];
-                return value;
-            }
-
-            else return mty
-        },
-
-        userRank(id)
-        {
-            if (typeof psbf3c18[id] != "undefined")
-            {
-                var value = psbf3c18[id];
-                return value;
-            }
-
-            else return 0;
-        },
-
-        customRank(id)
-        {
-            if (typeof psbf3c15[id] != "undefined")
-            {
-                var value = psbf3c15[id];
-                return value;
-            }
-
-            else return 0;
-        },
-
-        readError()
-        {
-            return psbf3c32;
-        }
-    };
-}
-
-"use strict";
-{
-    C3.Plugins.Sparsha_FirebaseSDK = class FirebaseSDKPlugin extends C3.SDKPluginBase
-    {
-        constructor(opts)
-        {
-            super(opts);
-        }
-
-        Release()
-        {
-            super.Release();
-        }
-    };
-}
-
-"use strict";
-{
-    C3.Plugins.Sparsha_FirebaseSDK.Type = class FirebaseSDKType extends C3.SDKTypeBase
-    {
-        constructor(objectClass)
-        {
-            super(objectClass);
-        }
-
-        Release()
-        {
-            super.Release();
-        }
-
-        OnCreate()
-        {}
-    };
-}
-
-"use strict";
-var Aenabled = false;
-var flgSD = 0;
-var fcSD = {};
-var fs_SD = "";
-
-var enableDebug;
-{
-    C3.Plugins.Sparsha_FirebaseSDK.Instance = class FirebaseSDKInstance extends C3.SDKInstanceBase
-    {
-        constructor(inst, properties)
-        {
-            super(inst);
-
-
-            if (properties)
-            {
-                this.aySD = properties[0];
-                this.piSD = properties[1];
-                this.msiSD = properties[2];
-                this.aiSD = properties[3];
-                this.ver_SD = properties[4];
-                this.isA_SD = properties[5];
-                this.isD_SD = properties[6];
-                this.debug = properties[7]
-            }
-        }
-
-        Release()
-        {
-            super.Release();
-        }
-
-        SaveToJson()
-        {
-            return {
-                // data to be saved for savegames
-            };
-        }
-
-        LoadFromJson(o)
-        {
-            // load state for savegames
-        }
-
-        GetDebuggerProperties()
-        {
-            return [
-            {
-                title: "FirebaseSDK",
-                properties: [
-                    //{name: ".current-animation",	value: this._currentAnimation.GetName(),	onedit: v => this.CallAction(Acts.SetAnim, v, 0) },
-                ]
-            }];
-        }
-    };
-}
-
-"use strict";
-{
-    C3.Plugins.Sparsha_FirebaseSDK.Cnds = {
-        Isloadedfb()
-        {
-            if (flgSD) return true;
-            else return false;
-        }
-    };
-}
-
-"use strict";
-{
-    C3.Plugins.Sparsha_FirebaseSDK.Acts = {
-        async LoadSD()
-        {
-            enableDebug = this.debug;
-            Aenabled = this.isA_SD;
-
-            var aD = this.adSD;
-
-            fcSD = {
-                'ap\iKe\y': this.aySD,
-                'aut\hD\oma\in': this.piSD + ".fi" + "re" + "ba" + "sea" + "pp.c" + "om",
-                'd\at\aba\s\eU\RL': "ht" + "tp" + "s:/" + "/" + this.piSD + ".fi" + "re" + "ba" + "sei" + "o.c" + "om",
-                'pr\o\je\ctI\d': this.piSD,
-                'st\or\a\ge\Bu\ck\et': this.piSD + ".ap" + "ps" + "po" + "t.c" + "om",
-                'm\e\ssa\gin\gS\end\er\Id': this.msiSD,
-                'a\p\pI\d': this.aiSD
-            }
-
-            var sptSD = [];
-            var linkInitial = "ht" + "tp" + "s:/" + "/ww" + "w.gs" + "tat" + "ic." + "co" + "m/f" + "ire" + "ba" + "se" + "js/";
-            var n = 0;
-
-
-            if (eval("typeof " + "d" + "o" + "cu" + "m" + "e" + "nt" + "!='undefined'"))
-            {
-                var dmt = eval("d" + "o" + "cu" + "m" + "e" + "nt");
-                sptSD[0] = dmt["cr" + "ea" + "teE" + "lem" + "ent"]('sc' + 'ri' + 'pt');
-                sptSD[0].src = "ht" + "tps" + "://w" + "ww.g" + "st" + "at" + "ic.co" + "m/fi" + "reb" + "ase" + "js/" + this.ver_SD + "/fi" + "reb" + "ase" + "-ap" + "p.j" + "s";
-
-                if (this.isA_SD)
-                {
-                    ++n;
-                    sptSD[n] = dmt["cr" + "ea" + "teE" + "lem" + "ent"]('sc' + 'ri' + 'pt');
-                    sptSD[n].src = linkInitial + this.ver_SD + "/fi" + "re" + "ba" + "se" + "-au" + "th.j" + "s";
-                }
-                if (this.isD_SD)
-                {
-                    ++n;
-                    sptSD[n] = dmt["cr" + "ea" + "teE" + "lem" + "ent"]('sc' + 'ri' + 'pt');
-                    sptSD[n].src = linkInitial + this.ver_SD + "/fi" + "reb" + "ase" + "-da" + "tab" + "ase" + ".j" + "s";
-                }
-
-                dmt["ge" + "tEl" + "eme" + "nts" + "B" + "yTa" + "gNa" + "me"]('h' + 'e' + 'a' + 'd')[0]["a" + "pp" + "en" + "dC" + "hi" + "ld"](sptSD[0]);
-                sptSD[0]["o" + "nl" + "oa" + "d"] = function()
-                {
-                    dmt["ge" + "tEl" + "eme" + "nts" + "B" + "yTa" + "gNa" + "me"]('h' + 'e' + 'a' + 'd')[0]["a" + "pp" + "en" + "dC" + "hi" + "ld"](sptSD[1]);
-                };
-                sptSD[1]["o" + "nl" + "oa" + "d"] = function()
-                {
-                    if (sptSD[2] != undefined) dmt["ge" + "tEl" + "eme" + "nts" + "B" + "yTa" + "gNa" + "me"]('h' + 'e' + 'a' + 'd')[0]["a" + "pp" + "en" + "dC" + "hi" + "ld"](sptSD[2]);
-                };
-                sptSD[n]["o" + "nl" + "oa" + "d"] = function()
-                {
-                    Init()
-                };
-
-
-                function Init()
-                {
-                    fs_SD = eval("fi" + "re" + "ba" + "se");
-                    fs_SD["in" + "iti" + "ali" + "zeA" + "pp"](fcSD);
-                    if (enableDebug)
-                    {
-                        console.log("F" + "I" + "RE" + "BA" + "SE SD" + "K LOA" + "DED" + "\n ");
-                    }
-                    if (Aenabled) ca_Fun();
-                    else flgSD = 1;
-                }
-            }
-            else
-            {
-                sptSD[0] = "ht" + "tp" + "s://w" + "ww.gs" + "ta" + "ti" + "c.com/fi" + "re" + "ba" + "se" + "js/" + this.ver_SD + "/fi" + "re" + "ba" + "se-a" + "pp.js";
-
-                if (this.isA_SD)
-                {
-                    ++n;
-                    sptSD[n] = linkInitial + this.ver_SD + "/fi" + "reb" + "ase" + "-au" + "th." + "js";
-                }
-                if (this.isD_SD)
-                {
-                    ++n;
-                    sptSD[n] = linkInitial + this.ver_SD + "/fi" + "re" + "ba" + "se-" + "dat" + "aba" + "se." + "js";
-                }
-                var imS = eval("im" + "po" + "rtS" + "cri" + "pts")
-                if (n == 1) await imS(sptSD[0], sptSD[1]);
-                if (n == 2) await imS(sptSD[0], sptSD[1], sptSD[2]);
-
-                fs_SD = eval("fi" + "re" + "ba" + "se");
-                fs_SD["in" + "iti" + "ali" + "zeA" + "pp"](fcSD);
-                if (enableDebug)
-                {
-                    console.log("F" + "I" + "RE" + "BA" + "SE SD" + "K LOA" + "DED" + "\n ");
-                }
-                if (Aenabled) ca_Fun();
-                else flgSD = 1;
-            }
-        }
-    };
-}
-
-"use strict";
-{
-    C3.Plugins.Sparsha_FirebaseSDK.Exps = {
-
-        };
-}
 
 'use strict';{const C3=self.C3;C3.Plugins.Browser=class BrowserPlugin extends C3.SDKPluginBase{constructor(opts){super(opts)}Release(){super.Release()}}};
 
@@ -6048,9 +4637,6 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		C3.Plugins.TextBox,
 		C3.Plugins.List,
 		C3.Plugins.LocalStorage,
-		C3.Plugins.Sparsha_FirebaseAuth,
-		C3.Plugins.Sparsha_FirebaseRealtimeDatabase,
-		C3.Plugins.Sparsha_FirebaseSDK,
 		C3.Behaviors.Rotate,
 		C3.Plugins.Browser,
 		C3.Plugins.Arr,
@@ -6065,7 +4651,6 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		C3.Plugins.System.Acts.Wait,
 		C3.Plugins.System.Acts.GoToLayout,
 		C3.Plugins.Touch.Cnds.OnTouchObject,
-		C3.Plugins.Sparsha_FirebaseRealtimeDatabase.Acts.SimpleWriteData,
 		C3.Plugins.Audio.Acts.Play,
 		C3.ScriptsInEvents.Gameplay_es_Event1_Act1,
 		C3.Behaviors.Tween.Acts.TweenTwoProperties,
@@ -6090,12 +4675,14 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		C3.Plugins.Sprite.Acts.SetSize,
 		C3.Behaviors.Tween.Acts.TweenOneProperty,
 		C3.ScriptsInEvents.Gameplay_es_Event21,
+		C3.Plugins.Browser.Acts.LoadStyleSheet,
 		C3.Plugins.System.Cnds.EveryTick,
 		C3.Plugins.Sprite.Acts.SetPos,
 		C3.Plugins.Sprite.Exps.X,
 		C3.Plugins.Sprite.Exps.Y,
 		C3.Plugins.Text.Acts.SetPos,
 		C3.Plugins.Text.Acts.SetText,
+		C3.Plugins.Sprite.Acts.SetAnimFrame,
 		C3.Plugins.Text.Acts.SetFontColor,
 		C3.Plugins.Sprite.Cnds.CompareX,
 		C3.ScriptsInEvents.Shapeidentity_es_Event2_Act1,
@@ -6104,14 +4691,13 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		C3.Plugins.Sprite.Acts.SetVisible,
 		C3.Plugins.System.Cnds.For,
 		C3.Plugins.System.Cnds.PickByEvaluate,
-		C3.Plugins.Sprite.Acts.SetAnimFrame,
 		C3.Plugins.System.Cnds.CompareVar,
 		C3.Plugins.System.Cnds.CompareBoolVar,
 		C3.Plugins.Sprite.Acts.Spawn,
 		C3.Plugins.System.Cnds.Else,
 		C3.Plugins.Sprite.Acts.SetX,
 		C3.Plugins.Text.Acts.SetVisible,
-		C3.ScriptsInEvents.Shapeidentity_es_Event310_Act7,
+		C3.ScriptsInEvents.Shapeidentity_es_Event310_Act6,
 		C3.Plugins.System.Cnds.Every,
 		C3.Plugins.sliderbar.Acts.SetValue,
 		C3.Plugins.Audio.Cnds.IsTagPlaying,
@@ -6124,30 +4710,26 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		C3.Plugins.Sprite.Acts.Destroy,
 		C3.Plugins.System.Exps.random,
 		C3.ScriptsInEvents.Inappfeedback_es_Event1_Act1,
-		C3.Plugins.LocalStorage.Acts.GetItem,
-		C3.Plugins.Sparsha_FirebaseAuth.Exps.userID,
 		C3.Plugins.System.Cnds.Compare,
 		C3.Plugins.System.Exps.layoutname,
 		C3.Plugins.System.Exps.int,
 		C3.Plugins.LocalStorage.Exps.ItemValue,
-		C3.Plugins.LocalStorage.Cnds.OnItemGet,
 		C3.Plugins.iframe.Acts.NavigateURL,
 		C3.Plugins.System.Exps.layoutwidth,
 		C3.Plugins.System.Exps.layoutheight,
 		C3.Plugins.iframe.Acts.SetPos,
-		C3.Plugins.LocalStorage.Acts.SetItem,
 		C3.Plugins.iframe.Acts.Destroy,
 		C3.Plugins.System.Cnds.CompareTime,
-		C3.ScriptsInEvents.Functions_data_es_Event2_Act1,
-		C3.ScriptsInEvents.Functions_data_es_Event4_Act1,
-		C3.ScriptsInEvents.Functions_data_es_Event6_Act1,
-		C3.ScriptsInEvents.Functions_data_es_Event8_Act1,
-		C3.ScriptsInEvents.Functions_data_es_Event10_Act1,
-		C3.ScriptsInEvents.Functions_data_es_Event12_Act1,
-		C3.ScriptsInEvents.Functions_data_es_Event14_Act1,
-		C3.ScriptsInEvents.Functions_data_es_Event16_Act1,
-		C3.ScriptsInEvents.Functions_data_es_Event18_Act1,
-		C3.ScriptsInEvents.Functions_data_es_Event20_Act1
+		C3.ScriptsInEvents.Functionsdata_es_Event2_Act1,
+		C3.ScriptsInEvents.Functionsdata_es_Event4_Act1,
+		C3.ScriptsInEvents.Functionsdata_es_Event6_Act1,
+		C3.ScriptsInEvents.Functionsdata_es_Event8_Act1,
+		C3.ScriptsInEvents.Functionsdata_es_Event10_Act1,
+		C3.ScriptsInEvents.Functionsdata_es_Event12_Act1,
+		C3.ScriptsInEvents.Functionsdata_es_Event14_Act1,
+		C3.ScriptsInEvents.Functionsdata_es_Event16_Act1,
+		C3.ScriptsInEvents.Functionsdata_es_Event18_Act1,
+		C3.ScriptsInEvents.Functionsdata_es_Event20_Act1
 		];
 	};
 	self.C3_JsPropNameTable = [
@@ -6389,9 +4971,6 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		{nicknameerror: 0},
 		{schoolnameerror: 0},
 		{EnterYourParentsEmail: 0},
-		{FirebaseAuthBasic: 0},
-		{FirebaseRDBasic: 0},
-		{FirebaseSDK: 0},
 		{Rotate: 0},
 		{loading: 0},
 		{Browser: 0},
@@ -6635,70 +5214,12 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 
 	self.C3_ExpressionFuncs = [
 		() => 2,
-		() => "photonumber",
 		() => 0,
 		() => "",
-		() => 1,
-		() => 3,
-		() => 4,
-		() => 5,
-		() => 6,
-		() => 7,
-		() => 8,
-		() => 9,
-		() => 10,
-		() => 11,
-		() => 12,
-		() => 13,
-		() => 14,
-		() => 15,
-		() => 16,
-		() => 17,
-		() => 18,
-		() => 19,
-		() => 20,
-		() => 21,
-		() => 22,
-		() => 23,
-		() => 24,
-		() => 25,
-		() => 26,
-		() => 27,
-		() => 28,
-		() => 29,
-		() => 30,
-		() => 31,
-		() => 32,
-		() => 33,
-		() => 34,
-		() => 35,
-		() => 36,
-		() => 37,
-		() => 38,
-		() => 39,
-		() => 40,
-		() => 41,
-		() => 42,
-		() => 43,
-		() => 44,
-		() => 45,
-		() => 46,
-		() => 47,
-		() => 48,
-		() => 49,
-		() => 50,
-		() => 51,
-		() => 52,
-		() => 53,
-		() => 54,
-		() => 55,
-		() => 56,
-		() => 57,
-		() => 58,
-		() => 59,
 		() => "levelbox",
 		() => 600,
 		() => 700,
+		() => 1,
 		() => "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
 		() => "level1",
 		() => 250,
@@ -6715,6 +5236,10 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		() => "level5",
 		() => "level6",
 		() => "Prompt",
+		() => 3,
+		() => 4,
+		() => 5,
+		() => 6,
 		() => "Activity Logic",
 		p => {
 			const n0 = p._GetNode(0);
@@ -6728,6 +5253,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		() => 150,
 		() => 195,
 		() => 90,
+		() => "customstyle.css",
 		p => {
 			const n0 = p._GetNode(0);
 			return () => (n0.ExpObject() + 173);
@@ -6773,14 +5299,16 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			return () => and("Coins: ", v0.GetValue());
 		},
 		() => "Read User Data",
+		() => -1023,
 		() => "Profile",
+		() => 50,
 		() => "profileView",
 		() => 201,
 		() => 411,
 		() => 0.5,
-		() => -1023,
 		() => -308,
 		() => -717750023016447,
+		() => 20,
 		() => -500,
 		() => 1250,
 		() => 0.1,
@@ -6809,6 +5337,23 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		() => 1.5,
 		() => "Shape Question",
 		() => 200,
+		() => 7,
+		() => 8,
+		() => 9,
+		() => 10,
+		() => 11,
+		() => 12,
+		() => 13,
+		() => 14,
+		() => 15,
+		() => 16,
+		() => 17,
+		() => 18,
+		() => 19,
+		() => 21,
+		() => 22,
+		() => 23,
+		() => 24,
 		() => "Shape Options",
 		() => "Shape audio",
 		() => "Triangle - 1",
@@ -6906,6 +5451,8 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			return () => f0(970, 1300);
 		},
 		() => 80,
+		() => 32,
+		() => 48,
 		() => 315,
 		() => 570,
 		() => 128,
@@ -6936,10 +5483,6 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0((-200), (-500));
-		},
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => ("tm_feedbackId_" + f0());
 		},
 		() => "_CLOSE_",
 		p => {
@@ -7022,7 +5565,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			setQuestion(runtime);
 		},
 
-		async Shapeidentity_es_Event310_Act7(runtime, localVars)
+		async Shapeidentity_es_Event310_Act6(runtime, localVars)
 		{
 			shuffleShapes(runtime);
 		},
@@ -7034,7 +5577,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			}
 		},
 
-		async Functions_data_es_Event2_Act1(runtime, localVars)
+		async Functionsdata_es_Event2_Act1(runtime, localVars)
 		{
 			window.addEventListener("message", event=>{
 				const obj = event.data;
@@ -7086,7 +5629,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			})
 		},
 
-		async Functions_data_es_Event4_Act1(runtime, localVars)
+		async Functionsdata_es_Event4_Act1(runtime, localVars)
 		{
 			window.parent.postMessage(
 			{
@@ -7094,7 +5637,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			},"*");
 		},
 
-		async Functions_data_es_Event6_Act1(runtime, localVars)
+		async Functionsdata_es_Event6_Act1(runtime, localVars)
 		{
 			window.parent.postMessage(
 			{
@@ -7105,7 +5648,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			},"*");
 		},
 
-		async Functions_data_es_Event8_Act1(runtime, localVars)
+		async Functionsdata_es_Event8_Act1(runtime, localVars)
 		{
 			window.parent.postMessage(
 			{
@@ -7117,7 +5660,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			//alert("Posted " + localVars.GameToOpen);
 		},
 
-		async Functions_data_es_Event10_Act1(runtime, localVars)
+		async Functionsdata_es_Event10_Act1(runtime, localVars)
 		{
 			window.parent.postMessage(
 			{
@@ -7129,7 +5672,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			//alert("Posted")
 		},
 
-		async Functions_data_es_Event12_Act1(runtime, localVars)
+		async Functionsdata_es_Event12_Act1(runtime, localVars)
 		{
 			window.parent.postMessage(
 			{
@@ -7141,7 +5684,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			//alert("Posted")
 		},
 
-		async Functions_data_es_Event14_Act1(runtime, localVars)
+		async Functionsdata_es_Event14_Act1(runtime, localVars)
 		{
 			window.parent.postMessage(
 			{
@@ -7154,7 +5697,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			//alert("Posted")
 		},
 
-		async Functions_data_es_Event16_Act1(runtime, localVars)
+		async Functionsdata_es_Event16_Act1(runtime, localVars)
 		{
 			window.parent.postMessage(
 			{
@@ -7167,7 +5710,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			//alert("Posted")
 		},
 
-		async Functions_data_es_Event18_Act1(runtime, localVars)
+		async Functionsdata_es_Event18_Act1(runtime, localVars)
 		{
 			window.parent.postMessage(
 			{
@@ -7178,7 +5721,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			},"*");
 		},
 
-		async Functions_data_es_Event20_Act1(runtime, localVars)
+		async Functionsdata_es_Event20_Act1(runtime, localVars)
 		{
 			window.parent.postMessage(
 			{
