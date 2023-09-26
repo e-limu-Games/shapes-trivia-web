@@ -4662,8 +4662,6 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		C3.ScriptsInEvents.Gameplay_es_Event9_Act4,
 		C3.ScriptsInEvents.Gameplay_es_Event10_Act4,
 		C3.ScriptsInEvents.Gameplay_es_Event11_Act4,
-		C3.ScriptsInEvents.Gameplay_es_Event12_Act3,
-		C3.ScriptsInEvents.Gameplay_es_Event13_Act3,
 		C3.Plugins.System.Cnds.IsGroupActive,
 		C3.Plugins.Touch.Cnds.OnTapGestureObject,
 		C3.Plugins.Sprite.Exps.Width,
@@ -5234,12 +5232,9 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		() => "level3",
 		() => "level4",
 		() => "level5",
-		() => "level6",
 		() => "Prompt",
 		() => 3,
 		() => 4,
-		() => 5,
-		() => 6,
 		() => "Activity Logic",
 		p => {
 			const n0 = p._GetNode(0);
@@ -5337,6 +5332,8 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		() => 1.5,
 		() => "Shape Question",
 		() => 200,
+		() => 5,
+		() => 6,
 		() => 7,
 		() => 8,
 		() => 9,
@@ -5534,16 +5531,6 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		},
 
 		async Gameplay_es_Event11_Act4(runtime, localVars)
-		{
-			shuffleShapes(runtime);
-		},
-
-		async Gameplay_es_Event12_Act3(runtime, localVars)
-		{
-			shuffleShapes(runtime);
-		},
-
-		async Gameplay_es_Event13_Act3(runtime, localVars)
 		{
 			shuffleShapes(runtime);
 		},
