@@ -4687,6 +4687,7 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		C3.Plugins.System.Acts.SetBoolVar,
 		C3.ScriptsInEvents.Shapeidentity_es_Event2_Act11,
 		C3.Plugins.Sprite.Acts.SetVisible,
+		C3.ScriptsInEvents.Shapeidentity_es_Event2_Act13,
 		C3.Plugins.System.Cnds.For,
 		C3.Plugins.System.Cnds.PickByEvaluate,
 		C3.Plugins.System.Cnds.CompareVar,
@@ -4695,8 +4696,10 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 		C3.Plugins.System.Cnds.Else,
 		C3.Plugins.Sprite.Acts.SetX,
 		C3.Plugins.Text.Acts.SetVisible,
-		C3.ScriptsInEvents.Shapeidentity_es_Event310_Act6,
+		C3.ScriptsInEvents.Shapeidentity_es_Event310_Act5,
+		C3.ScriptsInEvents.Shapeidentity_es_Event310_Act7,
 		C3.Plugins.System.Cnds.Every,
+		C3.ScriptsInEvents.Shapeidentity_es_Event316_Act2,
 		C3.Plugins.sliderbar.Acts.SetValue,
 		C3.Plugins.Audio.Cnds.IsTagPlaying,
 		C3.Plugins.Audio.Acts.SetVolume,
@@ -5552,9 +5555,24 @@ value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProper
 			setQuestion(runtime);
 		},
 
-		async Shapeidentity_es_Event310_Act6(runtime, localVars)
+		async Shapeidentity_es_Event2_Act13(runtime, localVars)
+		{
+			console.log("current highest level", runtime.globalVars.ST_HighestLevelPlayed);
+		},
+
+		async Shapeidentity_es_Event310_Act5(runtime, localVars)
+		{
+			console.log ("selected level", runtime.globalVars.SelectedLevel);
+		},
+
+		async Shapeidentity_es_Event310_Act7(runtime, localVars)
 		{
 			shuffleShapes(runtime);
+		},
+
+		async Shapeidentity_es_Event316_Act2(runtime, localVars)
+		{
+			console.log("level updated", runtime.globalVars.SelectedLevel);
 		},
 
 		async Inappfeedback_es_Event1_Act1(runtime, localVars)
